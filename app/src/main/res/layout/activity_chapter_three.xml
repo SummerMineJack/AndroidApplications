@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MultiMedia.ChapterThree">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/open_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="OpenGallery"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/createBitmap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="createBitmap"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/MatrixBitmap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="MatrixBitmap"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/detailBitmap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="detailBitmap"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/open_gallery_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        android:text="OpenGallery"
+        android:textAllCaps="false" />
+
+    <ImageView
+        android:id="@+id/open_gallery_imgs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/ic_launcher"
+        android:text="OpenGallery"
+        android:textAllCaps="false" />
+
+</LinearLayout>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MultiMedia.MediaMainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/chapter_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="第一章（使用内置Camera应用程序捕获图像）"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/chapter_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="第二章（构建定制的Camera应用程序）"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/chapter_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="第三章（图像编辑和处理）"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/chapter_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="第四章（图形和触摸事件）"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/chapter_five"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="第五章（Android音频概述）"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/chapter_six"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="第六章（后台和网络音频）"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/chapter_seven"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="第七章（音频捕获）"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/chapter_eight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="第八章（音频合成与分析）"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/chapter_nine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="第九章（视频概述）"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/chapter_ten"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="第十章（视频进阶）"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/chapter_eleven"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="第十一章（视频捕获）"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/chapter_twelve"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="第十二章（使用Web服务的媒体消费和发布）"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

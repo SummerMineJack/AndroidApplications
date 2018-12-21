@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MultiMedia.ChapterTen">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10.1"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/QueryVideo4MediaStore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="使用MediaStore检索视频"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10.2"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/networkvideostatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/internetVideo4VideView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="VideView网络视频"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/internetVideo4MediaPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MediaPlayer网络视频"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <SurfaceView
+        android:id="@+id/mediaSurfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:visibility="visible" />
+
+    <VideoView
+        android:id="@+id/play2networkVideo"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/query_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"></ListView>
+</LinearLayout>

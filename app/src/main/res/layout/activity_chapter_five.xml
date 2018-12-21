@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MultiMedia.ChapterFive">
+
+    <Button
+        android:id="@+id/open_system_music"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开内置播放器"
+        android:textAllCaps="false" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/start_media_player"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Start"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/stop_media_player"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Stop"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/Media_player_SeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/use_media_store"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="使用MediaStore浏览音乐"
+        android:textAllCaps="false" />
+
+
+</LinearLayout>

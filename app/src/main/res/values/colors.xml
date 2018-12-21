@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="header_ll_background">#f8f8f8</color>
+    <color name="header_ll_title">#171717</color>
+    <color name="home_search_bgc">#f3f3f3</color>
+
+    <color name="gray_codebg">#808080</color>
+    <color name="gray_one">#e0e0e0</color>
+    <!-- 灰色 -->
+    <color name="gray_two">#5A6163</color>
+    <color name="gray_three">#EEEEEE</color>
+    <color name="gray_four">#CCCCCC</color>
+    <color name="gray">#EAEAEA</color>
+    <color name="fontcoloe">#777575</color>
+    <color name="gray_five">#a1a1a1</color>
+
+    <!-- 白色 -->
+    <color name="white">#ffffff</color>
+    <color name="orange">#FF9999</color>
+    <color name="red">#C00B00</color>
+    <color name="black">#5d5d5d</color>
+    <color name="txtRed">#e74a34</color>
+    <color name="txtBlue">#1e6edf</color>
+    <color name="clear">#00000000</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="float_transparent">#66000000</color>
+    <color name="sweet_dialog_bg_color">#FFFFFF</color>
+    <color name="button_text_color">#FFFFFF</color>
+    <color name="gray_btn_bg_color">#D0D0D0</color>
+    <color name="gray_btn_bg_pressed_color">#B6B6B6</color>
+    <color name="blue_btn_bg_color">#AEDEF4</color>
+    <color name="blue_btn_bg_pressed_color">#96BFD2</color>
+    <color name="red_btn_bg_color">#DD6B55</color>
+    <color name="red_btn_bg_pressed_color">#CD5B55</color>
+    <color name="error_stroke_color">#F27474</color>
+    <color name="success_stroke_color">#A5DC86</color>
+    <color name="trans_success_stroke_color">#33A5DC86</color>
+    <color name="warning_stroke_color">#F8BB86</color>
+
+
+    <color name="linecolor">#dbdbdb</color>
+
+
+    <color name="item_normal">#f5f5f5</color>
+    <color name="item_press">#ffffff</color>
+    <color name="swipeoption_green">#36CF8E</color>
+    <color name="swipeoption_blue">#3693D0</color>
+    <color name="swipeoption_purple">#ff1744</color>
+
+</resources>

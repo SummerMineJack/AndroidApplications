@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/MainView"
+    android:orientation="vertical"
+    tools:context=".MultiMedia.ChapterNine">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9.1"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/useIntent2Play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="使用Intent进行播放视频"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/useVideoView2Play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="使用VideoView进行播放"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/useMediaPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="使用MediaPlay播放"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <SurfaceView
+        android:id="@+id/MediaPlayerSurfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="gone" />
+
+    <VideoView
+        android:id="@+id/vide_view_play"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="gone" />
+
+</LinearLayout>

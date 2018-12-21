@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="topbar" type="id" />
+    <item name="et_user_mobileNumber" type="id" />
+    <item name="et_user_password" type="id" />
+    <item name="order_pay_money" type="id"/>
+    <item name="order_pay_type" type="id"/>
+    <item name="order_pay_time" type="id"/>
+</resources>
