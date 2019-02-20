@@ -6,8 +6,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.app.ActivityCompat;
@@ -23,8 +21,6 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.model.Response;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -42,8 +38,6 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import ungpay.com.androidapplications.R;
-import ungpay.com.androidapplications.network.DialogCallback;
-import ungpay.com.androidapplications.network.ServerReponse;
 import ungpay.com.androidapplications.unit.DialogHelper;
 
 /**
@@ -88,7 +82,6 @@ public class ChapterTwelve extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.go_service:
-                useInternetService();
                 break;
             case R.id.get_location:
                 getLocation();
@@ -246,54 +239,6 @@ public class ChapterTwelve extends AppCompatActivity implements View.OnClickList
         locationManager.removeUpdates(this);
     }
 
-    /**
-     * 访问api网络
-     */
-    private void useInternetService() {
-        showJokeResult.setVisibility(View.VISIBLE);
-        OkGo.<ServerReponse<Result>>get("http://v.juhe.cn/joke/content/text.php").tag(this)
-                .params("page", "20")
-                .params("pagesize", "15")
-                .params("key", "a51a682a669992d512ee34bc9f0d64da")
-                .execute(new DialogCallback<ServerReponse<Result>>(this) {
-                    @Override
-                    public void onSuccess(Response<ServerReponse<Result>> response) {
-                        handlers.sendMessage(Message.obtain(handlers, 1, response));
-                    }
-
-                    @Override
-                    public void onError(Response<ServerReponse<Result>> response) {
-                        super.onError(response);
-                        handlers.sendMessage(Message.obtain(handlers, 1, response));
-                    }
-                });
-    }
-
-    /**
-     * 网络请求后进行UI线程操作
-     */
-    private Handler handlers = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 1:
-                    Response<ServerReponse<List<Data>>> response = (Response<ServerReponse
-                            <List<Data>>>) msg.obj;
-                    Result results = (Result) response.body().getResult();
-                    for (int i = 0; i < results.getData().size(); i++) {
-                        Data data = new Data();
-                        data.setContent(results.getData().get(i).getContent());
-                        data.setHashId(results.getData().get(i).getHashId());
-                        data.setUnixtime(results.getData().get(i).getUnixtime());
-                        data.setUpdatetime(results.getData().get(i).getUpdatetime());
-                        datas.add(data);
-                    }
-                    showJokeResult.setAdapter(new ShowJokeListAdapter());
-                    break;
-            }
-
-        }
-    };
 
     @Override
     public void onLocationChanged(Location location) {
