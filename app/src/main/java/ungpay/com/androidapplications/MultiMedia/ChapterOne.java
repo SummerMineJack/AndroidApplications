@@ -12,12 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.blankj.utilcode.util.ImageUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 
+
 import org.summer.utils.DeviceUtils;
 import org.summer.utils.FileUtils;
-import org.summer.utils.ImageUtils;
 import org.summer.utils.ToastUtils;
 
 import java.io.ByteArrayInputStream;
@@ -36,6 +37,7 @@ public class ChapterOne extends AppCompatActivity implements View.OnClickListene
 
     private ImageView mImageView;
     private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private FileOutputStream outputStream;
@@ -144,6 +146,7 @@ public class ChapterOne extends AppCompatActivity implements View.OnClickListene
      * 从本地获取图片并显示
      */
     private void getPicture() {
+        ToastUtils.showLongToast(ChapterOne.this, "设置成功");
         imageView.setImageBitmap(ImageUtils.getBitmap(filePath, 800, 800));
     }
 }

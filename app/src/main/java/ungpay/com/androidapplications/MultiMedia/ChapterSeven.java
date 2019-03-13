@@ -148,30 +148,36 @@ public class ChapterSeven extends AppCompatActivity implements OnClickListener, 
                 playRecording();
                 break;
             case R.id.start_audio_recorder:
-                PermissionUtils.permission(new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}).rationale(new PermissionUtils.OnRationaleListener() {
-                    @Override
-                    public void rationale(ShouldRequest shouldRequest) {
-                        DialogHelper.showRationaleDialog(shouldRequest);
+                if(btnPlayRecording.getText().equals("Pause recording")){
+                    btnPlayRecording.setText("PlayRecording");
+                    if(mediaPlayer!=null){
+                        mediaPlayer.stop();
                     }
-                }).callback(new PermissionUtils.FullCallback() {
-                    @Override
-                    public void onGranted(List<String> permissionsGranted) {
-                        try {
-                            startAudiaoRecorder();
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                }else{
+                    PermissionUtils.permission(new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}).rationale(new PermissionUtils.OnRationaleListener() {
+                        @Override
+                        public void rationale(ShouldRequest shouldRequest) {
+                            DialogHelper.showRationaleDialog(shouldRequest);
                         }
-                    }
-
-                    @Override
-                    public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
-                        if (!permissionsDeniedForever.isEmpty()) {
-                            DialogHelper.showOpenAppSettingDialog();
+                    }).callback(new PermissionUtils.FullCallback() {
+                        @Override
+                        public void onGranted(List<String> permissionsGranted) {
+                            try {
+                                startAudiaoRecorder();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
-                        LogUtils.d(permissionsDeniedForever, permissionsDenied);
-                    }
-                }).request();
 
+                        @Override
+                        public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
+                            if (!permissionsDeniedForever.isEmpty()) {
+                                DialogHelper.showOpenAppSettingDialog();
+                            }
+                            LogUtils.d(permissionsDeniedForever, permissionsDenied);
+                        }
+                    }).request();
+                }
                 break;
             case R.id.stop_audio_recorder:
                 isRecording = false;
@@ -283,7 +289,8 @@ public class ChapterSeven extends AppCompatActivity implements OnClickListener, 
     private void playRecording() {
         status.setText("Playing");
         mediaPlayer.start();
-        btnPlayRecording.setEnabled(false);
+        btnPlayRecording.setText("Pause recording");
+        btnPlayRecording.setEnabled(true);
         btnStopRecording.setEnabled(false);
         btnStratRecording.setEnabled(false);
     }
