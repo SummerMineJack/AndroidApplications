@@ -1,52 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MultiMedia.ChapterTwo">
 
-    <SurfaceView
-        android:id="@+id/surfaceView_camera_one"
+    <ImageView
+        android:id="@+id/camera_result_call_back"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="115dp" />
+        android:layout_weight="3"
+        android:src="@mipmap/ic_launcher"
+        android:visibility="gone" />
 
     <Button
-        android:id="@+id/take_picture"
-        android:layout_width="wrap_content"
+        android:id="@+id/tack_picture"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="倒计时3秒拍照"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/surfaceView_camera_one"
-        app:layout_constraintVertical_bias="0.883"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/count_down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3"
-        android:textColor="@android:color/holo_blue_bright"
-        android:textSize="120sp"
+        android:layout_weight="1"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/take_picture"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/surfaceView_camera_one"
-        app:layout_constraintVertical_bias="0.697"
-        tools:ignore="MissingConstraints" />
+        android:text="拍照" />
 
-    <ImageView
-        android:id="@+id/camera_result_back_show"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher" />
+    <FrameLayout
+        android:id="@+id/take_camera_framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <SurfaceView
+            android:id="@+id/surfaceView_camera_one"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="115dp" />
+
+        <ImageView
+            android:id="@+id/camera_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+
+        <RadioGroup
+            android:id="@+id/rd_group"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center|top"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/three_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="3秒" />
+
+            <RadioButton
+                android:id="@+id/five_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5秒" />
+
+            <RadioButton
+                android:id="@+id/ten_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10秒" />
+        </RadioGroup>
+
+        <ImageView
+            android:id="@+id/camera_flash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@mipmap/ic_launcher" />
+
+        <Button
+            android:id="@+id/take_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="20dp"
+            android:text="拍照" />
+
+        <TextView
+            android:id="@+id/count_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="3"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textSize="120sp"
+            android:visibility="gone" />
+
+    </FrameLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

@@ -1,6 +1,5 @@
 package ungpay.com.androidapplications.MultiMedia;
 
-import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -12,10 +11,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.ImageUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
-
 
 import org.summer.utils.DeviceUtils;
 import org.summer.utils.FileUtils;
@@ -23,7 +22,6 @@ import org.summer.utils.ToastUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.List;
 
@@ -36,12 +34,6 @@ import ungpay.com.androidapplications.unit.DialogHelper;
 public class ChapterOne extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView mImageView;
-    private static String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.CAMERA,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    private FileOutputStream outputStream;
-    private boolean isGenrd;
     private ImageView imageView;
     private Button btnOpenCamera;
     private Button btnOpenFileManager;
@@ -116,7 +108,7 @@ public class ChapterOne extends AppCompatActivity implements View.OnClickListene
      * Api大于23时进行权限检测
      */
     private void checkPermission() {
-        PermissionUtils.permission(PERMISSIONS_STORAGE)
+        PermissionUtils.permission(PermissionConstants.CAMERA, PermissionConstants.STORAGE)
                 .rationale(new PermissionUtils.OnRationaleListener() {
                     @Override
                     public void rationale(final ShouldRequest shouldRequest) {
