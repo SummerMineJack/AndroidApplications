@@ -12,13 +12,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.DeviceUtils;
+import com.blankj.utilcode.util.FileIOUtils;
 import com.blankj.utilcode.util.ImageUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
-
-import org.summer.utils.DeviceUtils;
-import org.summer.utils.FileUtils;
-import org.summer.utils.ToastUtils;
+import com.blankj.utilcode.util.ToastUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -62,11 +61,11 @@ public class ChapterOne extends AppCompatActivity implements View.OnClickListene
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         InputStream isBm = new ByteArrayInputStream(baos.toByteArray());
-        boolean isSuccessSave = FileUtils.writeFileFromIS(filePath, isBm, false);
+        boolean isSuccessSave = FileIOUtils.writeFileFromIS(filePath, isBm, false);
         if (isSuccessSave) {
-            ToastUtils.showLongToast(ChapterOne.this, "保存成功");
+            ToastUtils.showLong("保存成功");
         } else {
-            ToastUtils.showLongToast(ChapterOne.this, "保存失败");
+            ToastUtils.showLong("保存失败");
         }
     }
 
@@ -91,7 +90,7 @@ public class ChapterOne extends AppCompatActivity implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.open_camera:
-                if (DeviceUtils.getSDKVersion() >= 23) {
+                if (DeviceUtils.getSDKVersionCode() >= 23) {
                     checkPermission();
                 } else {
                     startActivityForResult(new Intent(MediaStore
@@ -138,7 +137,7 @@ public class ChapterOne extends AppCompatActivity implements View.OnClickListene
      * 从本地获取图片并显示
      */
     private void getPicture() {
-        ToastUtils.showLongToast(ChapterOne.this, "设置成功");
+        ToastUtils.showLong("设置成功");
         imageView.setImageBitmap(ImageUtils.getBitmap(filePath, 800, 800));
     }
 }

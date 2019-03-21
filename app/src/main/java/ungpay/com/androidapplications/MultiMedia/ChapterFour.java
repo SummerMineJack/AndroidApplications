@@ -18,10 +18,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.ImageUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 
-import org.summer.utils.ImageUtils;
 
 import java.util.List;
 

@@ -27,13 +27,6 @@
             android:text="StopService"
             android:textAllCaps="false" />
 
-        <Button
-            android:id="@+id/HaveFun"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="HaveFun"
-            android:textAllCaps="false" />
     </LinearLayout>
 
     <LinearLayout
@@ -90,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="paresButton"
+            android:text="从网络获取音频保存并播放"
             android:textAllCaps="false" />
 
         <Button

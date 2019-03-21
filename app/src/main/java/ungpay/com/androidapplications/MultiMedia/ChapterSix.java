@@ -32,9 +32,12 @@ import ungpay.com.androidapplications.R;
 /**
  * 使用服务进行播放音乐
  */
-public class ChapterSix extends AppCompatActivity implements View.OnClickListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnErrorListener, MediaPlayer.OnPreparedListener {
+public class ChapterSix extends AppCompatActivity implements View.OnClickListener,
+        MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpdateListener,
+        MediaPlayer.OnErrorListener, MediaPlayer.OnPreparedListener {
 
-    private Button btnStartService, btnStopService, btnHaveFun, btnstartMusic, btnStopMusic, btnLiveParseMusic, btnLiveStartMusic, btnLiveStopMusic;
+    private Button btnStartService, btnStopService, btnstartMusic, btnStopMusic,
+            btnLiveParseMusic, btnLiveStartMusic, btnLiveStopMusic;
     private Intent serviceIntent;
     private TextView tvShowSeek, tvShowStatus;
     private ChapterSixService bgService;
@@ -78,7 +81,6 @@ public class ChapterSix extends AppCompatActivity implements View.OnClickListene
     private void initView() {
         btnStartService = findViewById(R.id.StartService);
         btnStopService = findViewById(R.id.StopService);
-        btnHaveFun = findViewById(R.id.HaveFun);
         btnstartMusic = findViewById(R.id.start_music);
         tvShowSeek = findViewById(R.id.prepare_tv);
         tvShowStatus = findViewById(R.id.status_tv);
@@ -95,7 +97,6 @@ public class ChapterSix extends AppCompatActivity implements View.OnClickListene
         btnstartMusic.setEnabled(false);
         btnstartMusic.setOnClickListener(this);
         btnStopMusic.setOnClickListener(this);
-        btnHaveFun.setOnClickListener(this);
         btnStopService.setOnClickListener(this);
         btnStartService.setOnClickListener(this);
     }
@@ -121,10 +122,6 @@ public class ChapterSix extends AppCompatActivity implements View.OnClickListene
         }
     };
 
-    private void haveFun() {
-        bgService.haveFun();
-    }
-
     /**
      * 关闭服务
      */
@@ -143,9 +140,6 @@ public class ChapterSix extends AppCompatActivity implements View.OnClickListene
             case R.id.StopService:
                 stopService();
                 break;
-            case R.id.HaveFun:
-                haveFun();
-                break;
             case R.id.start_music:
                 startMusic();
                 break;
@@ -153,7 +147,8 @@ public class ChapterSix extends AppCompatActivity implements View.OnClickListene
                 stopMusic();
                 break;
             case R.id.paresButton:
-                parseMusicFile();
+                ToastUtils.showLong("停止维护");
+//                parseMusicFile();
                 break;
             case R.id.startButton:
                 playListMusic();
@@ -172,14 +167,15 @@ public class ChapterSix extends AppCompatActivity implements View.OnClickListene
             @Override
             public void run() {
                 try {
-                    URL requestURL = new URL("http://live.kboo.fm:8000/high.m3u");
+                    URL requestURL = new URL("https://y.qq.com/n/yqq/playlist/3267752660.html");
                     URLConnection urlConnection = requestURL.openConnection();
                     HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
                     httpURLConnection.connect();
                     if (httpURLConnection.getResponseCode() == 200) {
                         handler.sendMessage(Message.obtain(handler, 2));
                         InputStream inputStream = urlConnection.getInputStream();
-                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                        BufferedReader bufferedReader =
+                                new BufferedReader(new InputStreamReader(inputStream));
                         String line = null;
 
                         while ((line = bufferedReader.readLine()) != null) {

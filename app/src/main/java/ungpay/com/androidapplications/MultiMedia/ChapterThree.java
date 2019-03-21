@@ -19,10 +19,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.ImageUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
-
-import org.summer.utils.ImageUtils;
 
 import java.util.List;
 
@@ -36,6 +35,7 @@ public class ChapterThree extends AppCompatActivity implements View.OnClickListe
     private Button btnMatrixBitmap;
     private Button btnDetailBitmap;
     private ImageView open_gallery_img, open_gallery_imgs;
+    private Bitmap chooseGallaryBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,12 +82,12 @@ public class ChapterThree extends AppCompatActivity implements View.OnClickListe
                     c.moveToFirst();
                     int columnIndex = c.getColumnIndex(filePathColumns[0]);
                     String imagePath = c.getString(columnIndex);
-                    Bitmap bitmap = ImageUtils.getBitmap(imagePath);
-                    if (bitmap == null) {
+                    chooseGallaryBitmap = ImageUtils.getBitmap(imagePath);
+                    if (chooseGallaryBitmap == null) {
                         open_gallery_img.setImageBitmap(BitmapFactory.decodeResource(getResources
                                 (), R.mipmap.ic_launcher));
                     } else {
-                        open_gallery_img.setImageBitmap(bitmap);
+                        open_gallery_img.setImageBitmap(chooseGallaryBitmap);
                     }
                     c.close();
                     break;
@@ -173,16 +173,6 @@ public class ChapterThree extends AppCompatActivity implements View.OnClickListe
      * 在位图上绘制位图
      */
     private void createBitmap2Bitmap() {
-        Drawable drawable = open_gallery_img.getDrawable();
-        if (drawable != null) {
-            Bitmap bitmap = ImageUtils.drawable2Bitmap(drawable);
-            Bitmap iconLogoBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap
-                    .ic_launcher);
-            Bitmap bitmap1 = ImageUtils.addImageWatermark(bitmap, iconLogoBitmap, 0, 0, 230);
-            Bitmap currentBitmap = ImageUtils.addImageWatermark(bitmap1, iconLogoBitmap,
-                    iconLogoBitmap.getWidth(), iconLogoBitmap.getHeight(),
-                    200);
-            open_gallery_img.setImageBitmap(currentBitmap);
-        }
+        open_gallery_img.setImageBitmap(ImageUtils.addImageWatermark(ImageUtils.drawable2Bitmap(open_gallery_img.getDrawable()), ImageUtils.getBitmap(R.mipmap.ic_launcher_round), 0, 0, 230));
     }
 }

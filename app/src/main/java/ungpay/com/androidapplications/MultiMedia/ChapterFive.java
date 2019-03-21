@@ -9,7 +9,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -19,6 +18,8 @@ import com.blankj.utilcode.util.DeviceUtils;
 import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
+import com.blankj.utilcode.util.ResourceUtils;
+import com.blankj.utilcode.util.ToastUtils;
 
 import java.io.File;
 import java.util.List;
@@ -100,7 +101,7 @@ public class ChapterFive extends AppCompatActivity implements View.OnClickListen
         cursor.moveToFirst();
         int columnIndex = cursor.getColumnIndex(col[2]);
         String titleMusic = cursor.getString(columnIndex);
-        Log.e("~~~~~~~~~~~~~~~~~~~~~~~", "根据cursor获取的音频标题为：" + titleMusic);
+        ToastUtils.showLong("根据cursor获取的音频标题为：" + titleMusic);
     }
 
 
@@ -216,10 +217,12 @@ public class ChapterFive extends AppCompatActivity implements View.OnClickListen
     private void openMusic4Api24() {
         /*try {
             InputStream inputStream = getResources().getAssets().open("popdanthology.mp3");
-            File filePath = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "popdanthology.mp3");
+            File filePath = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),
+             "popdanthology.mp3");
             boolean isInputSuccess = FileIOUtils.writeFileFromIS(filePath, inputStream);
             if (isInputSuccess) {
-                Uri file = FileProvider.getUriForFile(ChapterFive.this, BuildConfig.APPLICATION_ID + ".provider", filePath);
+                Uri file = FileProvider.getUriForFile(ChapterFive.this, BuildConfig
+                .APPLICATION_ID + ".provider", filePath);
                 startActivity(new Intent(Intent.ACTION_VIEW).setDataAndType(file, "audio/*"));
             } else {
                 ToastUtils.showLong("创建音频文件失败");
@@ -227,9 +230,14 @@ public class ChapterFive extends AppCompatActivity implements View.OnClickListen
         } catch (IOException e) {
             e.printStackTrace();
         }*/
+        boolean isSuccess = ResourceUtils.copyFileFromRaw(R.raw.popdanthology,
+                getCacheDir().getPath() + "/raw/popdanthology.mp3");
+        ToastUtils.showLong(isSuccess + "");
         startActivity(new Intent(Intent.ACTION_VIEW).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent
                 .FLAG_GRANT_WRITE_URI_PERMISSION).setDataAndType(FileProvider.getUriForFile
-                (ChapterFive.this, BuildConfig.APPLICATION_ID + ".provider", FileUtils.getFileByPath(Environment.getExternalStorageDirectory().getAbsolutePath() + "popdanthology.mp3")), "audio/*"));
+                (ChapterFive.this, BuildConfig.APPLICATION_ID + ".provider",
+                        FileUtils.getFileByPath(getCacheDir().getPath() + "/raw/popdanthology" +
+                                ".mp3")), "audio/*"));
     }
 
     private void openMusic4Api21() {

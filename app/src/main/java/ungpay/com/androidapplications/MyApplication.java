@@ -2,9 +2,9 @@ package ungpay.com.androidapplications;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.util.Log;
 
 import com.blankj.utilcode.util.CrashUtils;
-import com.blankj.utilcode.util.LogUtils;
 
 public class MyApplication extends Application {
     @Override
@@ -19,7 +19,7 @@ public class MyApplication extends Application {
             @Override
             public void onCrash(String crashInfo, Throwable e) {
                 //app崩溃异常日志在这里处理，可以进行上传服务器
-                LogUtils.e(crashInfo);
+                Log.e("~~~~~~~~~~", crashInfo);
             }
         });
     }

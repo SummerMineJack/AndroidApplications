@@ -40,12 +40,6 @@ public class ChapterSixService extends Service implements MediaPlayer.OnCompleti
         mediaPlayer.release();
     }
 
-    public void haveFun() {
-        if (mediaPlayer.isPlaying()) {
-            mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() - 2500);
-        }
-    }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e("~~", "Service is onStartCommand");
