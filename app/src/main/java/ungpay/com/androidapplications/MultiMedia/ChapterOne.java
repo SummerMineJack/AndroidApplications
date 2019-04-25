@@ -1,6 +1,7 @@
 package ungpay.com.androidapplications.MultiMedia;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
@@ -70,6 +71,10 @@ public class ChapterOne extends AppCompatActivity implements View.OnClickListene
         }
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

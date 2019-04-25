@@ -21,6 +21,12 @@
                 android:layout_height="wrap_content"
                 android:text="多媒体开发"
                 android:textAllCaps="false" />
+            <Button
+                android:id="@+id/Fragment_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fragment重拾"
+                android:textAllCaps="false" />
 
         </LinearLayout>
     </ScrollView>
