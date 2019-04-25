@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/create_looper_for_ui"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="在Ui线程中初始化looper会报异常"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/create_looper_for_work"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="子线程中操作UI线程第一种方法" />
+
+    <Button
+        android:id="@+id/create_looper_for_work_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="子线程中操作UI线程第二种方法" />
+</LinearLayout>
