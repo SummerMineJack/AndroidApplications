@@ -22,6 +22,18 @@
                 android:text="多媒体开发"
                 android:textAllCaps="false" />
             <Button
+                android:id="@+id/handler_intent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Handler机制"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Activity相关"
+                android:textAllCaps="false" />
+            <Button
                 android:id="@+id/Fragment_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

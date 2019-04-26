@@ -24,6 +24,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AndroidAdvancedDevelopment.activity.ActivityMainActiivty" android:persistableMode="persistAcrossReboots" ></activity>
+        <activity android:name=".AndroidAdvancedDevelopment.fragment.FragmentMainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,7 +62,7 @@
         <activity android:name=".MultiMedia.ChapterNine" />
         <activity android:name=".MultiMedia.ChapterTen" />
         <activity android:name=".MultiMedia.ChapterEleven" />
-        <activity android:name=".MultiMedia.ChapterTwelve"></activity>
+        <activity android:name=".MultiMedia.ChapterTwelve" />
     </application>
 
 </manifest>
