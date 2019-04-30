@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import ungpay.com.androidapplications.AndroidAdvancedDevelopment.Service.ServiceActivity;
 import ungpay.com.androidapplications.AndroidAdvancedDevelopment.activity.ActivityMainActiivty;
 import ungpay.com.androidapplications.AndroidAdvancedDevelopment.fragment.FragmentMainActivity;
 import ungpay.com.androidapplications.AndroidAdvancedDevelopment.handler.HandlerActivity;
@@ -41,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ActivityMainActiivty.class));
+            }
+        });
+        findViewById(R.id.service_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ServiceActivity.class));
             }
         });
     }

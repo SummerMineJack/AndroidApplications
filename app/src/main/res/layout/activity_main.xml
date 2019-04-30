@@ -39,6 +39,12 @@
                 android:layout_height="wrap_content"
                 android:text="Fragment重拾"
                 android:textAllCaps="false" />
+            <Button
+                android:id="@+id/service_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Service相关"
+                android:textAllCaps="false" />
 
         </LinearLayout>
     </ScrollView>

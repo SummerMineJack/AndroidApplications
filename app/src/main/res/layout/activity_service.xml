@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AndroidAdvancedDevelopment.Service.ServiceActivity">
+
+    <Button
+        android:id="@+id/StartService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="使用StartService开启服务"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/StopService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="使用stop停止服务"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/bindService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="使用BindService开启服务"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/unbindService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="使用unbind停止服务"
+        android:textAllCaps="false" />
+</LinearLayout>

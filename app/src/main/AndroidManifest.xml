@@ -24,7 +24,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AndroidAdvancedDevelopment.activity.ActivityMainActiivty" android:persistableMode="persistAcrossReboots" ></activity>
+        <activity android:name=".AndroidAdvancedDevelopment.Service.ServiceActivity"></activity>
+
+        <service
+            android:name=".AndroidAdvancedDevelopment.Service.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".AndroidAdvancedDevelopment.activity.ActivityMainActiivty"
+            android:persistableMode="persistAcrossReboots" />
         <activity android:name=".AndroidAdvancedDevelopment.fragment.FragmentMainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
