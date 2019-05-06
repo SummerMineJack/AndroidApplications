@@ -24,7 +24,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AndroidAdvancedDevelopment.Service.ServiceActivity"></activity>
+        <activity android:name=".AndroidAdvancedDevelopment.ViewStubMergeInclude.LayoutMainactivity"></activity>
+        <activity android:name=".AndroidAdvancedDevelopment.Service.ServiceActivity" />
 
         <service
             android:name=".AndroidAdvancedDevelopment.Service.MyService"
