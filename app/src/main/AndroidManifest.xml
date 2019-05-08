@@ -24,7 +24,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AndroidAdvancedDevelopment.ViewStubMergeInclude.LayoutMainactivity"></activity>
+        <activity android:name=".AndroidAdvancedDevelopment.AndroidContactPHP.SelAllUserInfoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AndroidAdvancedDevelopment.ViewStubMergeInclude.LayoutMainactivity" />
         <activity android:name=".AndroidAdvancedDevelopment.Service.ServiceActivity" />
 
         <service
@@ -36,13 +43,7 @@
             android:name=".AndroidAdvancedDevelopment.activity.ActivityMainActiivty"
             android:persistableMode="persistAcrossReboots" />
         <activity android:name=".AndroidAdvancedDevelopment.fragment.FragmentMainActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".MultiMedia.MediaMainActivity" />
         <activity android:name=".MultiMedia.ChapterOne" />
         <activity android:name=".MultiMedia.ChapterTwo" />
