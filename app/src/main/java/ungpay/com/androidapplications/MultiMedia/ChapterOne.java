@@ -34,8 +34,8 @@ import ungpay.com.androidapplications.unit.DialogHelper;
  */
 public class ChapterOne extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView mImageView;
-    private ImageView imageView;
+    private ImageView takePictureImg;
+    private ImageView openFileImg;
     private Button btnOpenCamera;
     private Button btnOpenFileManager;
     private String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() +
@@ -47,7 +47,8 @@ public class ChapterOne extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chapter_one);
         this.setTitle(getIntent().getStringExtra("title"));
-        imageView = findViewById(R.id.camera_result_img);
+        takePictureImg = findViewById(R.id.camera_result_img);
+        openFileImg=findViewById(R.id.camera_result_set);
         btnOpenCamera = findViewById(R.id.open_camera);
         btnOpenCamera.setOnClickListener(this);
         btnOpenFileManager = findViewById(R.id.get_picture);
@@ -83,9 +84,7 @@ public class ChapterOne extends AppCompatActivity implements View.OnClickListene
             switch (requestCode) {
                 case 0x001:
                     //这样获得的图片很小
-                    Log.e("~~~~~~~~~~~~~~~~~~~", "" + data);
-                    mImageView = findViewById(R.id.camera_result_img);
-                    mImageView.setImageBitmap((Bitmap) data.getExtras().get("data"));
+                    takePictureImg.setImageBitmap((Bitmap) data.getExtras().get("data"));
                     saveFile((Bitmap) data.getExtras().get("data"));
                     break;
             }
@@ -133,7 +132,7 @@ public class ChapterOne extends AppCompatActivity implements View.OnClickListene
                         if (!permissionsDeniedForever.isEmpty()) {
                             DialogHelper.showOpenAppSettingDialog();
                         }
-                        LogUtils.d(permissionsDeniedForever, permissionsDenied);
+                        checkPermission();
                     }
                 })
                 .request();
@@ -143,7 +142,6 @@ public class ChapterOne extends AppCompatActivity implements View.OnClickListene
      * 从本地获取图片并显示
      */
     private void getPicture() {
-        ToastUtils.showLong("设置成功");
-        imageView.setImageBitmap(ImageUtils.getBitmap(filePath, 800, 800));
+        openFileImg.setImageBitmap(ImageUtils.getBitmap(filePath, 800, 800));
     }
 }
