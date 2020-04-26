@@ -45,7 +45,18 @@
                 android:layout_height="wrap_content"
                 android:text="Service相关"
                 android:textAllCaps="false" />
-
+            <Button
+                android:id="@+id/Recy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RecycleView Mor"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/step_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="时间线"
+                android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
 

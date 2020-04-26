@@ -24,7 +24,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AndroidAdvancedDevelopment.AndroidContactPHP.SelAllUserInfoActivity">
+        <activity android:name=".AndroidAdvancedDevelopment.activity.TestHorizontalStepViewActivity"></activity>
+
+
+        <activity android:name=".AndroidAdvancedDevelopment.activity.MainActivitys"></activity>
+
+        <activity android:name=".AndroidAdvancedDevelopment.activity.TestActivity"></activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,7 +49,6 @@
             android:name=".AndroidAdvancedDevelopment.activity.ActivityMainActiivty"
             android:persistableMode="persistAcrossReboots" />
         <activity android:name=".AndroidAdvancedDevelopment.fragment.FragmentMainActivity" />
-        <activity android:name=".MainActivity"></activity>
         <activity android:name=".MultiMedia.MediaMainActivity" />
         <activity android:name=".MultiMedia.ChapterOne" />
         <activity android:name=".MultiMedia.ChapterTwo" />

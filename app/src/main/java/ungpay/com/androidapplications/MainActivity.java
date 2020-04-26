@@ -7,6 +7,8 @@ import android.view.View;
 
 import ungpay.com.androidapplications.AndroidAdvancedDevelopment.Service.ServiceActivity;
 import ungpay.com.androidapplications.AndroidAdvancedDevelopment.activity.ActivityMainActiivty;
+import ungpay.com.androidapplications.AndroidAdvancedDevelopment.activity.MainActivitys;
+import ungpay.com.androidapplications.AndroidAdvancedDevelopment.activity.TestActivity;
 import ungpay.com.androidapplications.AndroidAdvancedDevelopment.fragment.FragmentMainActivity;
 import ungpay.com.androidapplications.AndroidAdvancedDevelopment.handler.HandlerActivity;
 import ungpay.com.androidapplications.MultiMedia.MediaMainActivity;
@@ -48,6 +50,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ServiceActivity.class));
+            }
+        });
+        findViewById(R.id.Recy).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TestActivity.class));
+            }
+        });
+        findViewById(R.id.step_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MainActivitys.class));
             }
         });
     }

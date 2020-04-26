@@ -83,7 +83,7 @@ public class ChapterOne extends AppCompatActivity implements View.OnClickListene
             switch (requestCode) {
                 case 0x001:
                     //这样获得的图片很小
-                    Log.e("~~~~~~~~~~~~~~~~~~~", "" + data);
+                    Log.e("~~~~~~~~~~~~~~~~~~~", "" + data.getExtras().get("data"));
                     mImageView = findViewById(R.id.camera_result_img);
                     mImageView.setImageBitmap((Bitmap) data.getExtras().get("data"));
                     saveFile((Bitmap) data.getExtras().get("data"));
