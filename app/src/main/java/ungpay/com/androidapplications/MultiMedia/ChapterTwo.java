@@ -30,7 +30,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.blankj.utilcode.constant.PermissionConstants;
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.SizeUtils;
 import com.blankj.utilcode.util.ToastUtils;
@@ -101,6 +100,10 @@ public class ChapterTwo extends AppCompatActivity implements View.OnClickListene
         btntack_picture.setOnClickListener(this);
         camera_flash.setOnClickListener(this);
         btnDelayTakcPicture.setOnClickListener(this);
+        checkPerminsion();
+    }
+
+    private void checkPerminsion() {
         PermissionUtils.permission(PermissionConstants.CAMERA).rationale(new PermissionUtils.OnRationaleListener() {
             @Override
             public void rationale(ShouldRequest shouldRequest) {
@@ -118,7 +121,7 @@ public class ChapterTwo extends AppCompatActivity implements View.OnClickListene
                 if (!permissionsDeniedForever.isEmpty()) {
                     DialogHelper.showOpenAppSettingDialog();
                 }
-                LogUtils.d(permissionsDeniedForever, permissionsDenied);
+                checkPerminsion();
             }
         }).request();
     }

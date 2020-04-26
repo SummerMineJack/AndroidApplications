@@ -14,6 +14,9 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
+    <uses-feature
+        android:glEsVersion="0x00030001"
+        android:required="true" />
 
     <application
         android:name=".MyApplication"
@@ -24,12 +27,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".AndroidAdvancedDevelopment.activity.TestHorizontalStepViewActivity"></activity>
 
 
         <activity android:name=".AndroidAdvancedDevelopment.activity.MainActivitys"></activity>
 
         <activity android:name=".AndroidAdvancedDevelopment.activity.TestActivity"></activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,6 +43,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AndroidAdvancedDevelopment.ViewStubMergeInclude.LayoutMainactivity" />
+        <activity android:name=".AndroidAdvancedDevelopment.handler.HandlerActivity"/>
         <activity android:name=".AndroidAdvancedDevelopment.Service.ServiceActivity" />
 
         <service
