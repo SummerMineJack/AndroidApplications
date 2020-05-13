@@ -1,12 +1,14 @@
 package ungpay.com.androidapplications.AndroidAdvancedDevelopment.activity;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -37,6 +39,10 @@ class SeeMoreAdapter extends RecyclerView.Adapter<SeeMoreAdapter.SeeMoreViewHold
 //        TextView textView = (TextView) seeMoreViewHolder.textView;
         if (getItemViewType(position) == TYPE_HIDE) {
             seeMoreViewHolder.textView.setText("收起");
+            seeMoreViewHolder.imgPullDown.setVisibility(View.VISIBLE);
+            seeMoreViewHolder.iv_item.setVisibility(View.GONE);
+            seeMoreViewHolder.textView.setTextColor(Color.parseColor("#3E81E5"));
+            seeMoreViewHolder.llTextViewImage.setGravity(Gravity.CENTER);
             seeMoreViewHolder.rl_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -46,6 +52,10 @@ class SeeMoreAdapter extends RecyclerView.Adapter<SeeMoreAdapter.SeeMoreViewHold
             });
         } else if (getItemViewType(position) == TYPE_SEE_MORE) {
             seeMoreViewHolder.textView.setText("查看更多");
+            seeMoreViewHolder.imgPullDown.setVisibility(View.VISIBLE);
+            seeMoreViewHolder.iv_item.setVisibility(View.GONE);
+            seeMoreViewHolder.textView.setTextColor(Color.parseColor("#3E81E5"));
+            seeMoreViewHolder.llTextViewImage.setGravity(Gravity.CENTER);
             seeMoreViewHolder.rl_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -56,7 +66,7 @@ class SeeMoreAdapter extends RecyclerView.Adapter<SeeMoreAdapter.SeeMoreViewHold
         } else {
             seeMoreViewHolder.textView.setText(mList.get(position));
             seeMoreViewHolder.rl_item.setClickable(false);
-            if (onItemClick!=null){
+            if (onItemClick != null) {
                 seeMoreViewHolder.rl_item.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -69,42 +79,63 @@ class SeeMoreAdapter extends RecyclerView.Adapter<SeeMoreAdapter.SeeMoreViewHold
 
     @Override
     public int getItemViewType(int position) {
-        if (mList.size() <= 4) {
+        int beanSize = mList.size();
+        if (beanSize == 1) {
             return TYPE_NORMAL;
-        }
-        if (mOpen) {
-            if (position == mList.size()) {
-                return TYPE_HIDE;
-            } else {
-                return TYPE_NORMAL;
-            }
         } else {
-            if (position == 2) {
-                return TYPE_SEE_MORE;
+            if (mOpen) {
+                if (position == mList.size()) {
+                    return TYPE_HIDE;
+                } else {
+                    return TYPE_NORMAL;
+                }
             } else {
-                return TYPE_NORMAL;
+                if (beanSize == 2) {
+                    if (position == beanSize) {
+                        return TYPE_SEE_MORE;
+                    } else {
+                        if(position==beanSize-1){
+                            return TYPE_SEE_MORE;
+                        }else {
+                            return TYPE_NORMAL;
+                        }
+                    }
+                } else {
+                    if (position == 2) {
+                        return TYPE_SEE_MORE;
+                    } else {
+                        return TYPE_NORMAL;
+                    }
+                }
             }
         }
     }
 
+
     @Override
     public int getItemCount() {
-        if (mList.size() > 4) {
-            //若现在是展开状态 条目数量需要+1 "收起"条目
-            if (mOpen) {
-                return mList.size() + 1;
-            } else {
-                return 3;
-            }
+        int size = mList.size();
+        if (size == 1) {
+            return size;
         } else {
-            return mList.size();
+            if (mOpen) {
+                return size + 1;
+            } else {
+                if (size == 2) {
+                    return size;
+                } else {
+                    return 3;
+                }
+            }
         }
     }
 
     class SeeMoreViewHolder extends RecyclerView.ViewHolder {
-        TextView textView ;
-        ImageView iv_item ;
-        RelativeLayout rl_item ;
+        TextView textView;
+        ImageView iv_item;
+        ImageView imgPullDown;
+        LinearLayout rl_item;
+        LinearLayout llTextViewImage;
 
 
         public SeeMoreViewHolder(@NonNull View itemView) {
@@ -112,15 +143,19 @@ class SeeMoreAdapter extends RecyclerView.Adapter<SeeMoreAdapter.SeeMoreViewHold
             textView = itemView.findViewById(R.id.itemView);
             iv_item = itemView.findViewById(R.id.iv_item);
             rl_item = itemView.findViewById(R.id.rl_item);
+            llTextViewImage = itemView.findViewById(R.id.ll_text_image);
+            imgPullDown = itemView.findViewById(R.id.img_pull_down);
         }
     }
 
 
-    public interface OnItemClick{
+    public interface OnItemClick {
         void onItemClick(int position);
     }
+
     private OnItemClick onItemClick;
-    public void setOnITEMClickListener(OnItemClick onItemClick){
+
+    public void setOnITEMClickListener(OnItemClick onItemClick) {
         this.onItemClick = onItemClick;
     }
 

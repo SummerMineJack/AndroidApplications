@@ -25,7 +25,7 @@ public class TestActivity extends AppCompatActivity {
     private void initView() {
         recyclerView = findViewById(R.id.rv_main);
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 2; i++) {
             list.add("哈萨ki" + i);
         }
         SeeMoreAdapter seeMoreAdapter = new SeeMoreAdapter(list);

@@ -17,8 +17,8 @@ public class MediaMainActivity extends AppCompatActivity {
         findViewById(R.id.chapter_one).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MediaMainActivity.this, ChapterOne.class).putExtra
-                        ("title", ((Button) findViewById(R.id.chapter_one)).getText()));
+              /*  startActivity(new Intent(MediaMainActivity.this, ChapterOne.class).putExtra
+                        ("title", ((Button) findViewById(R.id.chapter_one)).getText()));*/
             }
         });
         findViewById(R.id.chapter_two).setOnClickListener(new View.OnClickListener() {
