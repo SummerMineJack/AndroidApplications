@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.TimeUtils;
+import com.blankj.utilcode.util.UtilsTransActivity;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -123,9 +124,10 @@ public class ChapterSeven extends AppCompatActivity implements OnClickListener, 
                         Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}).rationale(new PermissionUtils.OnRationaleListener() {
                     @Override
-                    public void rationale(ShouldRequest shouldRequest) {
+                    public void rationale(UtilsTransActivity activity, ShouldRequest shouldRequest) {
                         DialogHelper.showRationaleDialog(shouldRequest);
                     }
+
                 }).callback(new PermissionUtils.FullCallback() {
                     @Override
                     public void onGranted(List<String> permissionsGranted) {
@@ -156,8 +158,9 @@ public class ChapterSeven extends AppCompatActivity implements OnClickListener, 
                 }else{
                     PermissionUtils.permission(new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}).rationale(new PermissionUtils.OnRationaleListener() {
                         @Override
-                        public void rationale(ShouldRequest shouldRequest) {
+                        public void rationale(UtilsTransActivity activity, ShouldRequest shouldRequest) {
                             DialogHelper.showRationaleDialog(shouldRequest);
+
                         }
                     }).callback(new PermissionUtils.FullCallback() {
                         @Override

@@ -27,14 +27,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".AndroidAdvancedDevelopment.activity.TestHorizontalStepViewActivity"></activity>
-
-
-        <activity android:name=".AndroidAdvancedDevelopment.activity.MainActivitys"></activity>
-
-        <activity android:name=".AndroidAdvancedDevelopment.activity.TestActivity"></activity>
-
+        <activity android:name=".ocr.CameraActivity"></activity>
+        <activity android:name=".ocr.OcrActivity" />
+        <activity android:name=".retrofit.RetrofitRequestActivity" />
+        <activity android:name=".AndroidAdvancedDevelopment.activity.TestHorizontalStepViewActivity" />
+        <activity android:name=".AndroidAdvancedDevelopment.activity.MainActivitys" />
+        <activity android:name=".AndroidAdvancedDevelopment.activity.TestActivity" />
+        <activity android:name=".alipaycard.AlipayCardViewActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AndroidAdvancedDevelopment.ViewStubMergeInclude.LayoutMainactivity" />
-        <activity android:name=".AndroidAdvancedDevelopment.handler.HandlerActivity"/>
+        <activity android:name=".AndroidAdvancedDevelopment.handler.HandlerActivity" />
         <activity android:name=".AndroidAdvancedDevelopment.Service.ServiceActivity" />
 
         <service

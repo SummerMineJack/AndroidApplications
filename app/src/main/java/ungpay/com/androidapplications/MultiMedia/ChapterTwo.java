@@ -33,6 +33,7 @@ import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.SizeUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.blankj.utilcode.util.UtilsTransActivity;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
@@ -104,12 +105,7 @@ public class ChapterTwo extends AppCompatActivity implements View.OnClickListene
     }
 
     private void checkPerminsion() {
-        PermissionUtils.permission(PermissionConstants.CAMERA).rationale(new PermissionUtils.OnRationaleListener() {
-            @Override
-            public void rationale(ShouldRequest shouldRequest) {
-                DialogHelper.showRationaleDialog(shouldRequest);
-            }
-        }).callback(new PermissionUtils.FullCallback() {
+        PermissionUtils.permission(PermissionConstants.CAMERA).rationale((activity, shouldRequest) -> DialogHelper.showRationaleDialog(shouldRequest)).callback(new PermissionUtils.FullCallback() {
             @Override
             public void onGranted(List<String> permissionsGranted) {
                 initSurfaceHolder();

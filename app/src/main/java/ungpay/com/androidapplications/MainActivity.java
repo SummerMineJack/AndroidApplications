@@ -12,6 +12,9 @@ import ungpay.com.androidapplications.AndroidAdvancedDevelopment.activity.TestAc
 import ungpay.com.androidapplications.AndroidAdvancedDevelopment.fragment.FragmentMainActivity;
 import ungpay.com.androidapplications.AndroidAdvancedDevelopment.handler.HandlerActivity;
 import ungpay.com.androidapplications.MultiMedia.MediaMainActivity;
+import ungpay.com.androidapplications.alipaycard.AlipayCardViewActivity;
+import ungpay.com.androidapplications.ocr.OcrActivity;
+import ungpay.com.androidapplications.retrofit.RetrofitRequestActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -62,6 +65,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, MainActivitys.class));
+            }
+        });
+        findViewById(R.id.card_bank_view).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AlipayCardViewActivity.class));
+            }
+        });
+        findViewById(R.id.network_retrofit_request).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RetrofitRequestActivity.class));
+            }
+        });
+        findViewById(R.id.ocr_scan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, OcrActivity.class));
             }
         });
     }

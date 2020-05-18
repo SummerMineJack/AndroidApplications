@@ -21,6 +21,7 @@ import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.ImageUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
+import com.blankj.utilcode.util.UtilsTransActivity;
 
 
 import java.util.List;
@@ -140,12 +141,7 @@ public class ChapterFour extends AppCompatActivity implements View.OnTouchListen
         switch (view.getId()) {
             case R.id.open_gallery:
                 PermissionUtils.permission(PermissionConstants.getPermissions(PermissionConstants
-                        .STORAGE)).rationale(new PermissionUtils.OnRationaleListener() {
-                    @Override
-                    public void rationale(ShouldRequest shouldRequest) {
-                        DialogHelper.showRationaleDialog(shouldRequest);
-                    }
-                }).callback(new PermissionUtils.FullCallback() {
+                        .STORAGE)).rationale((activity, shouldRequest) -> DialogHelper.showRationaleDialog(shouldRequest)).callback(new PermissionUtils.FullCallback() {
                     @Override
                     public void onGranted(List<String> permissionsGranted) {
                         getGallaryImage();

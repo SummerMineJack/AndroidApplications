@@ -21,42 +21,69 @@
                 android:layout_height="wrap_content"
                 android:text="多媒体开发"
                 android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/handler_intent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Handler机制"
                 android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/activity_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Activity相关"
                 android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/Fragment_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Fragment重拾"
                 android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/service_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Service相关"
                 android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/Recy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RecycleView Mor"
+                android:text="RecycleView More"
                 android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/step_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="时间线"
                 android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/card_bank_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="仿银行卡列表效果"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/network_retrofit_request"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="retrofit网络请求"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/ocr_scan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OCR识别"
+                android:textAllCaps="false" />
+
         </LinearLayout>
     </ScrollView>
 

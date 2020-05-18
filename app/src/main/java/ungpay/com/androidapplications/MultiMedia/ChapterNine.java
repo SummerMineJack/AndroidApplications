@@ -21,6 +21,7 @@ import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.blankj.utilcode.util.UtilsTransActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -72,13 +73,7 @@ public class ChapterNine extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.useIntent2Play:
-                PermissionUtils.permission(PermissionConstants.getPermissions(PermissionConstants.STORAGE)).rationale(new PermissionUtils.OnRationaleListener() {
-                    @Override
-                    public void rationale(ShouldRequest shouldRequest) {
-                        DialogHelper.showRationaleDialog(shouldRequest);
-
-                    }
-                }).callback(new PermissionUtils.FullCallback() {
+                PermissionUtils.permission(PermissionConstants.getPermissions(PermissionConstants.STORAGE)).rationale((activity, shouldRequest) -> DialogHelper.showRationaleDialog(shouldRequest)).callback(new PermissionUtils.FullCallback() {
                     @Override
                     public void onGranted(List<String> permissionsGranted) {
                         playVideo4Intent1();

@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
+import com.blankj.utilcode.util.UtilsTransActivity;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -194,8 +195,9 @@ public class ChapterTwelve extends AppCompatActivity implements View.OnClickList
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         PermissionUtils.permission(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}).rationale(new PermissionUtils.OnRationaleListener() {
             @Override
-            public void rationale(ShouldRequest shouldRequest) {
+            public void rationale(UtilsTransActivity activity, ShouldRequest shouldRequest) {
                 DialogHelper.showRationaleDialog(shouldRequest);
+
             }
         }).callback(new PermissionUtils.FullCallback() {
             @Override

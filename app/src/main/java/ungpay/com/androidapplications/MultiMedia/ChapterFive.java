@@ -20,6 +20,7 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ResourceUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.blankj.utilcode.util.UtilsTransActivity;
 
 import java.io.File;
 import java.util.List;
@@ -183,9 +184,10 @@ public class ChapterFive extends AppCompatActivity implements View.OnClickListen
         PermissionUtils.permission(PermissionConstants.getPermissions(PermissionConstants.STORAGE))
                 .rationale(new PermissionUtils.OnRationaleListener() {
                     @Override
-                    public void rationale(final ShouldRequest shouldRequest) {
+                    public void rationale(UtilsTransActivity activity, ShouldRequest shouldRequest) {
                         DialogHelper.showRationaleDialog(shouldRequest);
                     }
+
                 })
                 .callback(new PermissionUtils.FullCallback() {
                     @Override
