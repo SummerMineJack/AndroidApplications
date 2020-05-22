@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.OverScroller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,7 +120,7 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
 
     private void checkContentHeightByParent() {
         View parentView = (View) getParent();
-        mShowHeight = parentView.getMeasuredHeight() - parentView.getPaddingTop() - parentView.getPaddingBottom();
+        mShowHeight = parentView.getMeasuredHeight() - parentView.getPaddingTop() - parentView.getPaddingBottom() - 500;
     }
 
     private void measureChild(int widthMeasureSpec, int heightMeasureSpec) {
@@ -180,12 +179,7 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
     }
 
     public void updateSelectPosition(final int selectPosition) {
-        post(new Runnable() {
-            @Override
-            public void run() {
-                doCardClickAnimation(mViewHolders.get(selectPosition), selectPosition);
-            }
-        });
+        post(() -> doCardClickAnimation(mViewHolders.get(selectPosition), selectPosition));
     }
 
     public void clearSelectPosition() {
@@ -822,7 +816,7 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
         mItemExpendListener = itemExpendListener;
     }
 
-    public interface ItemExpendListener{
+    public interface ItemExpendListener {
         void onItemExpend(boolean expend);
     }
 }

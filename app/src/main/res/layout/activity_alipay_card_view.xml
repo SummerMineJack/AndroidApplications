@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ungpay.com.androidapplications.alipaycard.CardStackView
         android:id="@+id/stackview_main"
@@ -9,7 +10,8 @@
         android:clipToPadding="false"
         android:paddingLeft="12dp"
         android:paddingTop="12dp"
-        android:paddingRight="12dp" />
+        android:paddingRight="12dp"
+        app:stackAnimationType="allDown" />
 
     <LinearLayout
         android:id="@+id/button_container"
@@ -18,7 +20,8 @@
         android:layout_gravity="right|center_vertical"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <Button
             android:layout_width="wrap_content"
