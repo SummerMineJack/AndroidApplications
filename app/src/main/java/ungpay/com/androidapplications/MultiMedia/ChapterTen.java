@@ -29,12 +29,12 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.blankj.utilcode.BuildConfig;
 import com.blankj.utilcode.util.FileUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import ungpay.com.androidapplications.BuildConfig;
 import ungpay.com.androidapplications.R;
 
 /**

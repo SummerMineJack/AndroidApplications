@@ -1,5 +1,6 @@
 package ungpay.com.androidapplications.AndroidAdvancedDevelopment.activity;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -35,7 +36,7 @@ class SeeMoreAdapter extends RecyclerView.Adapter<SeeMoreAdapter.SeeMoreViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SeeMoreViewHolder seeMoreViewHolder, final int position) {
+    public void onBindViewHolder(@NonNull SeeMoreViewHolder seeMoreViewHolder, @SuppressLint("RecyclerView") final int position) {
 //        TextView textView = (TextView) seeMoreViewHolder.textView;
         if (getItemViewType(position) == TYPE_HIDE) {
             seeMoreViewHolder.textView.setText("收起");
@@ -94,11 +95,12 @@ class SeeMoreAdapter extends RecyclerView.Adapter<SeeMoreAdapter.SeeMoreViewHold
                     if (position == beanSize) {
                         return TYPE_SEE_MORE;
                     } else {
-                        if(position==beanSize-1){
+                        return TYPE_NORMAL;
+                       /* if (position == beanSize - 1) {
                             return TYPE_SEE_MORE;
-                        }else {
+                        } else {
                             return TYPE_NORMAL;
-                        }
+                        }*/
                     }
                 } else {
                     if (position == 2) {

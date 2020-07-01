@@ -24,11 +24,16 @@ public abstract class AnimatorAdapter {
     public void itemClick(final CardStackView.ViewHolder viewHolder, int position) {
         if (mSet != null && mSet.isRunning()) return;
         initAnimatorSet();
-        if (mCardStackView.getSelectPosition() == position) {
+        if (mCardStackView.isExpending()) {
             onItemCollapse(viewHolder);
         } else {
             onItemExpand(viewHolder, position);
         }
+       /* if (mCardStackView.getSelectPosition() == position) {
+            onItemCollapse(viewHolder);
+        } else {
+            onItemExpand(viewHolder, position);
+        }*/
         if (mCardStackView.getChildCount() == 1)
             mSet.end();
     }
@@ -107,12 +112,50 @@ public abstract class AnimatorAdapter {
         mSet.start();
     }
 
+    /**
+     * 设置动画偏移量方法
+     *
+     * @param collapseShowItemCount
+     * @return
+     */
     protected int getCollapseStartTop(int collapseShowItemCount) {
-        return mCardStackView.getOverlapGapsCollapse()
-                * (mCardStackView.getNumBottomShow() - collapseShowItemCount - (mCardStackView.getNumBottomShow() - (mCardStackView.getChildCount() - mCardStackView.getSelectPosition() > mCardStackView.getNumBottomShow()
-                ? mCardStackView.getNumBottomShow()
-                : mCardStackView.getChildCount() - mCardStackView.getSelectPosition() - 1)));
+        int returnNumber;
+        int numBottomShow = mCardStackView.getNumBottomShow();
+        int cardChildCount = mCardStackView.getChildCount();
+        int cardSelectPosition = mCardStackView.getSelectPosition();
+        int overlapGapsCollapse = mCardStackView.getOverlapGapsCollapse();
+        if (numBottomShow - (cardChildCount - cardSelectPosition) > numBottomShow) {
+            returnNumber = numBottomShow;
+        } else {
+            returnNumber = cardChildCount - cardSelectPosition - 1;
+        }
+        returnNumber = overlapGapsCollapse * (numBottomShow - collapseShowItemCount - returnNumber);
+        return returnNumber;
     }
+
+
+    /**
+     * 设置动画偏移量方法
+     *
+     * @param collapseShowItemCount
+     * @return
+     */
+    protected int getCollapseStartTopCopy(int collapseShowItemCount) {
+        int returnNumber;
+        int numBottomShow = mCardStackView.getNumBottomShow();
+        int cardChildCount = mCardStackView.getChildCount();
+        int cardSelectPosition = mCardStackView.getSelectPosition();
+        int overlapGapsCollapse = mCardStackView.getOverlapGapsCollapse();
+        if (numBottomShow - (cardChildCount - cardSelectPosition) > numBottomShow) {
+            returnNumber = numBottomShow;
+        } else {
+            returnNumber = cardChildCount - cardSelectPosition - 1;
+        }
+        int difference = numBottomShow - collapseShowItemCount - returnNumber;
+        returnNumber = difference * overlapGapsCollapse;
+        return returnNumber;
+    }
+
 
     public int getDuration() {
         return mCardStackView.getDuration();

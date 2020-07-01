@@ -9,6 +9,12 @@ public class AllMoveDownAnimatorAdapter extends AnimatorAdapter {
         super(cardStackView);
     }
 
+    /**
+     * 银行卡展开偏移量主要方法
+     *
+     * @param viewHolder
+     * @param position
+     */
     protected void itemExpandAnimatorSet(final CardStackView.ViewHolder viewHolder, int position) {
         final View itemView = viewHolder.itemView;
         itemView.clearAnimation();
@@ -20,15 +26,10 @@ public class AllMoveDownAnimatorAdapter extends AnimatorAdapter {
             if (i == mCardStackView.getSelectPosition()) continue;
             final View child = mCardStackView.getChildAt(i);
             child.clearAnimation();
-            if (i > mCardStackView.getSelectPosition() && collapseShowItemCount < mCardStackView.getNumBottomShow()) {
-                childTop = mCardStackView.getShowHeight() - getCollapseStartTop(collapseShowItemCount) + mCardStackView.getScrollY();
-                ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(), childTop);
-                mSet.play(oAnim);
-                collapseShowItemCount++;
-            } else {
-                ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(), mCardStackView.getShowHeight() + mCardStackView.getScrollY());
-                mSet.play(oAnim);
-            }
+            childTop = mCardStackView.getShowHeight() - getCollapseStartTop(collapseShowItemCount) + mCardStackView.getScrollY();
+            ObjectAnimator oAnim = ObjectAnimator.ofFloat(child, View.Y, child.getY(), childTop);
+            mSet.play(oAnim);
+            collapseShowItemCount++;
         }
     }
 

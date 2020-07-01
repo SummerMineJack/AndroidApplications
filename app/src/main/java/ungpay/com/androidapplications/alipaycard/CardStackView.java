@@ -86,7 +86,7 @@ public class CardStackView extends ViewGroup implements ScrollDelegate {
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CardStackView, defStyleAttr, defStyleRes);
         setOverlapGaps(array.getDimensionPixelSize(R.styleable.CardStackView_stackOverlapGaps, dp2px(20)));
-        setOverlapGapsCollapse(array.getDimensionPixelSize(R.styleable.CardStackView_stackOverlapGapsCollapse, dp2px(20)));
+        setOverlapGapsCollapse(array.getDimensionPixelSize(R.styleable.CardStackView_stackOverlapGapsCollapse, dp2px(60)));
         setDuration(array.getInt(R.styleable.CardStackView_stackDuration, AnimatorAdapter.ANIMATION_DURATION));
         setAnimationType(array.getInt(R.styleable.CardStackView_stackAnimationType, UP_DOWN_STACK));
         setNumBottomShow(array.getInt(R.styleable.CardStackView_stackNumBottomShow, 3));

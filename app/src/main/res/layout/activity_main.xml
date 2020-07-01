@@ -72,18 +72,11 @@
                 android:textAllCaps="false" />
 
             <Button
-                android:id="@+id/network_retrofit_request"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="retrofit网络请求"
-                android:textAllCaps="false" />
-            <Button
                 android:id="@+id/ocr_scan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="OCR识别"
                 android:textAllCaps="false" />
-
         </LinearLayout>
     </ScrollView>
 

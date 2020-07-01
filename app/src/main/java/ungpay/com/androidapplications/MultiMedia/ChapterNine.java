@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
+import com.blankj.utilcode.BuildConfig;
 import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.LogUtils;
@@ -27,7 +28,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import ungpay.com.androidapplications.BuildConfig;
 import ungpay.com.androidapplications.R;
 import ungpay.com.androidapplications.unit.DialogHelper;
 
@@ -126,10 +126,18 @@ public class ChapterNine extends AppCompatActivity implements View.OnClickListen
     private void useVideoView2Play() {
         mVideoView.setVisibility(View.VISIBLE);
         surfaceView.setVisibility(View.GONE);
-        Uri fileUri = FileProvider.getUriForFile(ChapterNine.this, BuildConfig.APPLICATION_ID + ".provider", FileUtils.getFileByPath(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/LoveTheWayYouLie.mp4"));
+        String uri = "android.resource://" + getPackageName() + "/" + R.raw.svw_video_testing;
+        LogUtils.e(uri);
+        MediaController mediaController = new MediaController(this);
+        mediaController.setVisibility(View.GONE);
+        mVideoView.setMediaController(mediaController);
+        mVideoView.setVideoPath(uri);
+        mVideoView.setVideoURI(Uri.parse(uri));
+        mVideoView.start();
+      /*  Uri fileUri = FileProvider.getUriForFile(ChapterNine.this, BuildConfig.APPLICATION_ID + ".provider", FileUtils.getFileByPath(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/LoveTheWayYouLie.mp4"));
         mVideoView.setMediaController(new MediaController(this));
         mVideoView.setVideoURI(fileUri);
-        mVideoView.start();
+        mVideoView.start();*/
     }
 
 

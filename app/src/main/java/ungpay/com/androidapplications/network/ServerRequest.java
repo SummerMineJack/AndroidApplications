@@ -2,7 +2,6 @@ package ungpay.com.androidapplications.network;
 
 import android.content.Context;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -39,7 +38,6 @@ public class ServerRequest {
      * post请求
      */
     public void request4Post(Context context) throws UnsupportedEncodingException {
-        LogUtils.e("请求地址：" + requestUrl + " 传递参数：" + jsonObject);
         HttpUtil.post4json(context, requestUrl,
                 new ByteArrayEntity(jsonObject.toString().getBytes("UTF-8")), "application" +
                         "/json",
@@ -48,7 +46,6 @@ public class ServerRequest {
                     public void onSuccess(int statusCode, Header[] headers,
                                           JSONObject response) {
                         super.onSuccess(statusCode, headers, response);
-                        LogUtils.e(response);
                         if (statusCode == 200 && response != null) {
                             if (response.optString("successFlag").equals("00")) {
                                 if (response.optString("respCode").equals("00")) {
