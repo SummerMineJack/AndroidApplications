@@ -27,9 +27,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ocr.CameraActivity"></activity>
-        <activity android:name=".ocr.OcrActivity" />
+        <activity android:name=".customcard.CustomAlipayCardActivity"></activity>
         <activity android:name=".retrofit.RetrofitRequestActivity" />
+        <activity android:name=".ocr.CameraActivity" />
+        <activity android:name=".ocr.OcrActivity" />
         <activity android:name=".AndroidAdvancedDevelopment.activity.TestHorizontalStepViewActivity" />
         <activity android:name=".AndroidAdvancedDevelopment.activity.MainActivitys" />
         <activity android:name=".AndroidAdvancedDevelopment.activity.TestActivity" />

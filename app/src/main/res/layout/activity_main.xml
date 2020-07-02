@@ -72,10 +72,23 @@
                 android:textAllCaps="false" />
 
             <Button
+                android:id="@+id/retrofit_network_request"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="retrofit2.0网络请求"
+                android:textAllCaps="false" />
+
+            <Button
                 android:id="@+id/ocr_scan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="OCR识别"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/custom_alipay_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="银行卡片列表"
                 android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
