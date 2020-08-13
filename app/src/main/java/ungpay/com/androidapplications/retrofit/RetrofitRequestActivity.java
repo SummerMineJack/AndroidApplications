@@ -22,17 +22,20 @@ public class RetrofitRequestActivity extends AppCompatActivity {
     }
 
     private void requestApi() {
-        Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl("http://v.juhe.cn/").build();
-        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-        apiInterface.getAllNews().enqueue(new Callback<NewsEntity>() {
+        AppLoginApi.userLogin(new ApiCallBack(this) {
             @Override
-            public void onResponse(Call<NewsEntity> call, Response<NewsEntity> response) {
-                LogUtils.e(response.body().getResult());
+            public void onSuccess(Call call, ResultBean result) {
+
             }
 
             @Override
-            public void onFailure(Call<NewsEntity> call, Throwable t) {
-                LogUtils.e(t.getMessage());
+            public void onFailure(Call call, String message) {
+
+            }
+
+            @Override
+            public void onUpDate(Call call) {
+
             }
         });
 

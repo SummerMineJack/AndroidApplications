@@ -84,11 +84,19 @@
                 android:layout_height="wrap_content"
                 android:text="OCR识别"
                 android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/custom_alipay_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="银行卡片列表"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_room_jet_pack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Room数据库"
                 android:textAllCaps="false" />
         </LinearLayout>
     </ScrollView>
