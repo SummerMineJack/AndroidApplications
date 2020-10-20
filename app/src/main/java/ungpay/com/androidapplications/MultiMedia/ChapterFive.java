@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import ungpay.com.androidapplications.BuildConfig;
 import ungpay.com.androidapplications.R;
 import ungpay.com.androidapplications.unit.DialogHelper;
 
@@ -133,7 +132,7 @@ public class ChapterFive extends AppCompatActivity implements View.OnClickListen
         //mediaPlayer = MediaPlayer.create(ChapterFive.this, R.raw.popdanthology);
         //2.使用获取当前app raw下转换成uri进行播放音乐
         mediaPlayer = MediaPlayer.create(ChapterFive.this, Uri.parse("android" +
-                ".resource://" + BuildConfig.APPLICATION_ID + "/" + R.raw.popdanthology));
+                ".resource://ungpay.com.androidapplications" + "/" + R.raw.popdanthology));
         //mediaPlayer.setOnCompletionListener(new MediaPlayerControl());
         int max = mediaPlayer.getDuration();
         seekBar.setMax(max);
@@ -237,7 +236,7 @@ public class ChapterFive extends AppCompatActivity implements View.OnClickListen
         ToastUtils.showLong(isSuccess + "");
         startActivity(new Intent(Intent.ACTION_VIEW).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent
                 .FLAG_GRANT_WRITE_URI_PERMISSION).setDataAndType(FileProvider.getUriForFile
-                (ChapterFive.this, BuildConfig.APPLICATION_ID + ".provider",
+                (ChapterFive.this, "ungpay.com.androidapplications.provider",
                         FileUtils.getFileByPath(getCacheDir().getPath() + "/raw/popdanthology" +
                                 ".mp3")), "audio/*"));
     }
