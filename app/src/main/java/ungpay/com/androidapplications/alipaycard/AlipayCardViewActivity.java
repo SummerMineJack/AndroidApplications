@@ -2,9 +2,10 @@ package ungpay.com.androidapplications.alipaycard;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
 

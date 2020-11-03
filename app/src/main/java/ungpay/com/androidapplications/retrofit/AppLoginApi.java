@@ -1,7 +1,5 @@
 package ungpay.com.androidapplications.retrofit;
 
-import org.json.JSONObject;
-
 import java.util.List;
 
 import retrofit2.Call;

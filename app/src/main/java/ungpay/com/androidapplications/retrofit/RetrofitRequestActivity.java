@@ -1,15 +1,10 @@
 package ungpay.com.androidapplications.retrofit;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
-import com.blankj.utilcode.util.LogUtils;
+import androidx.appcompat.app.AppCompatActivity;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import ungpay.com.androidapplications.R;
 
 public class RetrofitRequestActivity extends AppCompatActivity {

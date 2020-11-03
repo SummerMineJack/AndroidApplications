@@ -3,9 +3,6 @@
  */
 package ungpay.com.androidapplications.ocr;
 
-import java.io.IOException;
-
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,6 +17,8 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.WindowManager;
+
+import java.io.IOException;
 
 public class CropView extends View {
 

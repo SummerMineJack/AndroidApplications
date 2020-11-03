@@ -2,7 +2,8 @@ package ungpay.com.androidapplications;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import ungpay.com.androidapplications.AndroidAdvancedDevelopment.Service.ServiceActivity;
 import ungpay.com.androidapplications.AndroidAdvancedDevelopment.activity.ActivityMainActiivty;
@@ -15,7 +16,6 @@ import ungpay.com.androidapplications.alipaycard.AlipayCardViewActivity;
 import ungpay.com.androidapplications.customcard.CustomAlipayCardActivity;
 import ungpay.com.androidapplications.ocr.OcrActivity;
 import ungpay.com.androidapplications.retrofit.RetrofitRequestActivity;
-import ungpay.com.androidapplications.room.RoomMainActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +35,5 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.ocr_scan).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, OcrActivity.class)));
         findViewById(R.id.retrofit_network_request).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, RetrofitRequestActivity.class)));
         findViewById(R.id.custom_alipay_card).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CustomAlipayCardActivity.class)));
-        findViewById(R.id.btn_room_jet_pack).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, RoomMainActivity.class)));
     }
 }
