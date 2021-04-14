@@ -2,103 +2,36 @@ package ungpay.com.androidapplications.MultiMedia;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.LayoutInflater;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import ungpay.com.androidapplications.R;
+import ungpay.com.androidapplications.databinding.ActivityMediaMainBinding;
 
 public class MediaMainActivity extends AppCompatActivity {
+    private ActivityMediaMainBinding activityMediaMainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_media_main);
-        findViewById(R.id.chapter_one).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              /*  startActivity(new Intent(MediaMainActivity.this, ChapterOne.class).putExtra
-                        ("title", ((Button) findViewById(R.id.chapter_one)).getText()));*/
-            }
-        });
-        findViewById(R.id.chapter_two).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MediaMainActivity.this, ChapterTwo.class).putExtra
-                        ("title", ((Button) findViewById(R.id.chapter_two)).getText()));
-            }
-        });
-        findViewById(R.id.chapter_three).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MediaMainActivity.this, ChapterThree.class).putExtra
-                        ("title", ((Button) findViewById(R.id.chapter_three)).getText()));
-            }
-        });
-        findViewById(R.id.chapter_four).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MediaMainActivity.this, ChapterFour.class).putExtra
-                        ("title", ((Button) findViewById(R.id.chapter_four)).getText()));
-            }
-        });
-        findViewById(R.id.chapter_five).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MediaMainActivity.this, ChapterFive.class).putExtra
-                        ("title", ((Button) findViewById(R.id.chapter_five)).getText()));
-            }
-        });
-        findViewById(R.id.chapter_six).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MediaMainActivity.this, ChapterSix.class).putExtra
-                        ("title", ((Button) findViewById(R.id.chapter_six)).getText()));
-            }
-        });
-        findViewById(R.id.chapter_seven).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MediaMainActivity.this, ChapterSeven.class).putExtra
-                        ("title", ((Button) findViewById(R.id.chapter_seven)).getText()));
-            }
-        });
-        findViewById(R.id.chapter_eight).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MediaMainActivity.this, ChapterEight.class).putExtra
-                        ("title", ((Button) findViewById(R.id.chapter_eight)).getText()));
-            }
-        });
-        findViewById(R.id.chapter_nine).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MediaMainActivity.this, ChapterNine.class).putExtra
-                        ("title", ((Button) findViewById(R.id.chapter_nine)).getText()));
-            }
-        });
-        findViewById(R.id.chapter_ten).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MediaMainActivity.this, ChapterTen.class).putExtra
-                        ("title", ((Button) findViewById(R.id.chapter_ten)).getText()));
-            }
-        });
-        findViewById(R.id.chapter_eleven).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MediaMainActivity.this, ChapterEleven.class).putExtra
-                        ("title", ((Button) findViewById(R.id.chapter_eleven)).getText()));
-            }
-        });
-        findViewById(R.id.chapter_twelve).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MediaMainActivity.this, ChapterTwelve.class).putExtra
-                        ("title", ((Button) findViewById(R.id.chapter_twelve)).getText()));
-            }
-        });
+        activityMediaMainBinding = ActivityMediaMainBinding.inflate(LayoutInflater.from(this));
+        setContentView(activityMediaMainBinding.getRoot());
+        activityMediaMainBinding.chapterOne.setOnClickListener(view -> startActivityCustom(ChapterOne.class, activityMediaMainBinding.chapterOne));
+        activityMediaMainBinding.chapterTwo.setOnClickListener(view -> startActivityCustom(ChapterTwo.class, activityMediaMainBinding.chapterTwo));
+        activityMediaMainBinding.chapterThree.setOnClickListener(view -> startActivityCustom(ChapterThree.class, activityMediaMainBinding.chapterThree));
+        activityMediaMainBinding.chapterFour.setOnClickListener(view -> startActivityCustom(ChapterFour.class, activityMediaMainBinding.chapterFour));
+        activityMediaMainBinding.chapterFive.setOnClickListener(view -> startActivityCustom(ChapterFive.class, activityMediaMainBinding.chapterFive));
+        activityMediaMainBinding.chapterSix.setOnClickListener(view -> startActivityCustom(ChapterSix.class, activityMediaMainBinding.chapterSix));
+        activityMediaMainBinding.chapterSeven.setOnClickListener(view -> startActivityCustom(ChapterSeven.class, activityMediaMainBinding.chapterSeven));
+        activityMediaMainBinding.chapterEight.setOnClickListener(view -> startActivityCustom(ChapterEight.class, activityMediaMainBinding.chapterEight));
+        activityMediaMainBinding.chapterNine.setOnClickListener(view -> startActivityCustom(ChapterNine.class, activityMediaMainBinding.chapterNine));
+        activityMediaMainBinding.chapterTen.setOnClickListener(view -> startActivityCustom(ChapterTen.class, activityMediaMainBinding.chapterTen));
+        activityMediaMainBinding.chapterEleven.setOnClickListener(view -> startActivityCustom(ChapterEleven.class, activityMediaMainBinding.chapterEleven));
+        activityMediaMainBinding.chapterTwelve.setOnClickListener(view -> startActivityCustom(ChapterTwelve.class, activityMediaMainBinding.chapterTwelve));
+    }
 
+    private void startActivityCustom(Class activity, Button content) {
+        startActivity(new Intent(MediaMainActivity.this, activity).putExtra("title", content.getText().toString()));
     }
 }

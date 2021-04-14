@@ -45,12 +45,9 @@ class SeeMoreAdapter extends RecyclerView.Adapter<SeeMoreAdapter.SeeMoreViewHold
             seeMoreViewHolder.iv_item.setVisibility(View.GONE);
             seeMoreViewHolder.textView.setTextColor(Color.parseColor("#3E81E5"));
             seeMoreViewHolder.llTextViewImage.setGravity(Gravity.CENTER);
-            seeMoreViewHolder.rl_item.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOpen = false;
-                    notifyDataSetChanged();
-                }
+            seeMoreViewHolder.rl_item.setOnClickListener(v -> {
+                mOpen = false;
+                notifyDataSetChanged();
             });
         } else if (getItemViewType(position) == TYPE_SEE_MORE) {
             seeMoreViewHolder.textView.setText("查看更多");
@@ -58,23 +55,15 @@ class SeeMoreAdapter extends RecyclerView.Adapter<SeeMoreAdapter.SeeMoreViewHold
             seeMoreViewHolder.iv_item.setVisibility(View.GONE);
             seeMoreViewHolder.textView.setTextColor(Color.parseColor("#3E81E5"));
             seeMoreViewHolder.llTextViewImage.setGravity(Gravity.CENTER);
-            seeMoreViewHolder.rl_item.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOpen = true;
-                    notifyDataSetChanged();
-                }
+            seeMoreViewHolder.rl_item.setOnClickListener(v -> {
+                mOpen = true;
+                notifyDataSetChanged();
             });
         } else {
             seeMoreViewHolder.textView.setText(mList.get(position));
             seeMoreViewHolder.rl_item.setClickable(false);
             if (onItemClick != null) {
-                seeMoreViewHolder.rl_item.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        onItemClick.onItemClick(position);
-                    }
-                });
+                seeMoreViewHolder.rl_item.setOnClickListener(v -> onItemClick.onItemClick(position));
             }
         }
     }

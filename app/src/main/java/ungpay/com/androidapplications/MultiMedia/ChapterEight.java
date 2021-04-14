@@ -135,10 +135,6 @@ public class ChapterEight extends AppCompatActivity implements View.OnClickListe
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                play = true;
-                synth_frquency = event.getX() + BASE_FREQUENCY;
-                Log.e("~~~~~~~~~", synth_frquency + "");
-                break;
             case MotionEvent.ACTION_MOVE:
                 play = true;
                 synth_frquency = event.getX() + BASE_FREQUENCY;

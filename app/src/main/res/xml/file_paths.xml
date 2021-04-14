@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paths>
-    <root-path
-        name="root"
-        path=""/>
-    <files-path
-        name="files"
-        path=""/>
-
-    <cache-path
-        name="cache"
-        path=""/>
-
-    <external-path
-        name="external"
-        path=""/>
-
-    <external-files-path
-        name="external_file_path"
-        path=""/>
-    <external-cache-path
-        name="external_cache_path"
-        path=""/>
-
-</paths>
+<resources>
+    <paths>
+        <!-- 这个是保存拍照图片的路径,必须配置。 -->
+        <external-files-path
+            name="images"
+            path="Pictures" />
+        <!-- 注意 name 的名称设置不可以相同，否则会报错-->
+        <!--代表外部存储区域的根目录下的文件 Environment.getExternalStorageDirectory()/DCIM/camerademo目录-->
+        <external-path
+            name="library_DCIM"
+            path="DCIM/camera" />
+        <!--代表外部存储区域的根目录下的文件 Environment.getExternalStorageDirectory()/Pictures/camerademo目录-->
+        <external-path
+            name="library_Pictures"
+            path="Pictures/camera" />
+        <!--代表app 私有的存储区域 Context.getFilesDir()目录下的images目录 /data/user/0/xxxxxx/files/images-->
+        <files-path
+            name="library_private_files"
+            path="images" />
+        <!--代表app 私有的存储区域 Context.getCacheDir()目录下的images目录 /data/user/0/xxxxx/cache/images-->
+        <cache-path
+            name="library_private_cache"
+            path="images" />
+        <!--代表app 外部存储区域根目录下的文件 Context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)目录下的Pictures目录-->
+        <!--/storage/emulated/0/Android/data/xxxxx/files/Pictures-->
+        <external-files-path
+            name="library_external_files"
+            path="." />
+        <!--代表app 外部存储区域根目录下的文件 Context.getExternalCacheDir目录下的images目录-->
+        <!--/storage/emulated/0/Android/data/xxxxx/cache/images-->
+        <external-cache-path
+            name="library_external_cache"
+            path="." />
+        <root-path
+            name="library"
+            path="" />
+    </paths>
+</resources>

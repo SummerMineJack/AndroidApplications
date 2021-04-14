@@ -17,15 +17,11 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.SparseIntArray;
+import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,20 +33,14 @@ import com.blankj.utilcode.util.ToastUtils;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-import java.util.List;
 
 import ungpay.com.androidapplications.R;
+import ungpay.com.androidapplications.databinding.ActivityChapterTwoBinding;
 import ungpay.com.androidapplications.unit.DialogHelper;
 
 public class ChapterTwo extends AppCompatActivity implements View.OnClickListener {
+    private ActivityChapterTwoBinding activityChapterTwoBinding;
 
-    private FrameLayout take_camera_framelayout;
-    private ImageView cameraFront;
-    private Button btnDelayTakcPicture;
-    private TextView countDown;
-    private ImageView camera_flash;
-    private ImageView camera_result_call_back;
-    private SurfaceView surfaceView_camera_one;
     private CameraManager cameraManager;
     private SurfaceHolder surfaceHolder;
     private ImageReader imageReader;
@@ -62,11 +52,9 @@ public class ChapterTwo extends AppCompatActivity implements View.OnClickListene
     private CameraDevice cameraDevice;
     private CameraCaptureSession cameraCaptureSession;
     private CaptureRequest.Builder cameraCaptureRequestBuild;
-    private RadioGroup rd_group;
     private int delayTackPicture = 3;
     private CountDownTimer countDownTimer;
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
-    private Button btntack_picture;
 
     ///为了使照片竖直显示
     static {
@@ -79,7 +67,8 @@ public class ChapterTwo extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chapter_two);
+        activityChapterTwoBinding = ActivityChapterTwoBinding.inflate(LayoutInflater.from(this));
+        setContentView(activityChapterTwoBinding.getRoot());
         initView();
     }
 
@@ -87,56 +76,39 @@ public class ChapterTwo extends AppCompatActivity implements View.OnClickListene
      * 初始化视图
      */
     private void initView() {
-        surfaceView_camera_one = findViewById(R.id.surfaceView_camera_one);
-        take_camera_framelayout = findViewById(R.id.take_camera_framelayout);
-        cameraFront = findViewById(R.id.camera_change);
-        btnDelayTakcPicture = findViewById(R.id.take_picture);
-        countDown = findViewById(R.id.count_down);
-        camera_flash = findViewById(R.id.camera_flash);
-        btntack_picture = findViewById(R.id.tack_picture);
-        camera_result_call_back = findViewById(R.id.camera_result_call_back);
-        rd_group = findViewById(R.id.rd_group);
-        rd_group.setOnCheckedChangeListener(radioGroupListener);
-        cameraFront.setOnClickListener(this);
-        btntack_picture.setOnClickListener(this);
-        camera_flash.setOnClickListener(this);
-        btnDelayTakcPicture.setOnClickListener(this);
+        activityChapterTwoBinding.rdGroup.setOnCheckedChangeListener(radioGroupListener);
+        activityChapterTwoBinding.cameraChange.setOnClickListener(this);
+        activityChapterTwoBinding.cameraFlash.setOnClickListener(this);
+        activityChapterTwoBinding.tackPicture.setOnClickListener(this);
         checkPerminsion();
     }
 
     private void checkPerminsion() {
-        PermissionUtils.permission(PermissionConstants.CAMERA).rationale((activity, shouldRequest) -> DialogHelper.showRationaleDialog(shouldRequest)).callback(new PermissionUtils.FullCallback() {
+        PermissionUtils.permission(PermissionConstants.CAMERA).rationale((activity, shouldRequest) -> DialogHelper.showRationaleDialog(shouldRequest)).callback(new PermissionUtils.SimpleCallback() {
             @Override
-            public void onGranted(List<String> permissionsGranted) {
+            public void onGranted() {
                 initSurfaceHolder();
             }
 
             @Override
-            public void onDenied(List<String> permissionsDeniedForever,
-                                 List<String> permissionsDenied) {
-                if (!permissionsDeniedForever.isEmpty()) {
-                    DialogHelper.showOpenAppSettingDialog();
-                }
+            public void onDenied() {
                 checkPerminsion();
             }
         }).request();
     }
 
     private RadioGroup.OnCheckedChangeListener radioGroupListener =
-            new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch (checkedId) {
-                        case R.id.three_second:
-                            delayTackPicture = 3;
-                            break;
-                        case R.id.five_second:
-                            delayTackPicture = 5;
-                            break;
-                        case R.id.ten_second:
-                            delayTackPicture = 10;
-                            break;
-                    }
+            (group, checkedId) -> {
+                switch (checkedId) {
+                    case R.id.three_second:
+                        delayTackPicture = 3;
+                        break;
+                    case R.id.five_second:
+                        delayTackPicture = 5;
+                        break;
+                    case R.id.ten_second:
+                        delayTackPicture = 10;
+                        break;
                 }
             };
 
@@ -144,7 +116,7 @@ public class ChapterTwo extends AppCompatActivity implements View.OnClickListene
      * 初始化SurfaceHolder
      */
     private void initSurfaceHolder() {
-        surfaceHolder = surfaceView_camera_one.getHolder();
+        surfaceHolder = activityChapterTwoBinding.surfaceViewCameraOne.getHolder();
         surfaceHolder.addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
@@ -178,23 +150,20 @@ public class ChapterTwo extends AppCompatActivity implements View.OnClickListene
         mainHandler = new Handler(getMainLooper());
         imageReader = ImageReader.newInstance(1920,
 
-                1080 - SizeUtils.getMeasuredHeight(btntack_picture), ImageFormat.JPEG, 1);
+                1080 - SizeUtils.getMeasuredHeight(activityChapterTwoBinding.tackPicture), ImageFormat.JPEG, 1);
         //拍照后得到当前拍的照片进行保存
-        imageReader.setOnImageAvailableListener(new ImageReader.OnImageAvailableListener() {
-            @Override
-            public void onImageAvailable(ImageReader reader) {
-                Image image = reader.acquireNextImage();
-                ByteBuffer buffer = image.getPlanes()[0].getBuffer();
-                byte[] bytes = new byte[buffer.remaining()];
-                buffer.get(bytes);//由缓冲区存入字节数组
-                final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                if (bitmap != null) {
-                    camera_result_call_back.setImageBitmap(bitmap);
-                    btntack_picture.setVisibility(View.VISIBLE);
-                    camera_result_call_back.setVisibility(View.VISIBLE);
-                    take_camera_framelayout.setVisibility(View.GONE);
-                    closeCamera();
-                }
+        imageReader.setOnImageAvailableListener(reader -> {
+            Image image = reader.acquireNextImage();
+            ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+            byte[] bytes = new byte[buffer.remaining()];
+            buffer.get(bytes);//由缓冲区存入字节数组
+            final Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            if (bitmap != null) {
+                activityChapterTwoBinding.cameraResultCallBack.setImageBitmap(bitmap);
+                activityChapterTwoBinding.tackPicture.setVisibility(View.VISIBLE);
+                activityChapterTwoBinding.cameraResultCallBack.setVisibility(View.VISIBLE);
+                activityChapterTwoBinding.takeCameraFramelayout.setVisibility(View.GONE);
+                closeCamera();
             }
         }, mainHandler);
         cameraManager = (CameraManager) getSystemService(CAMERA_SERVICE);
@@ -266,17 +235,17 @@ public class ChapterTwo extends AppCompatActivity implements View.OnClickListene
                 break;
             case R.id.take_picture:
                 //使用计时器进行延迟拍照
-                countDown.setVisibility(View.VISIBLE);
+                activityChapterTwoBinding.countDown.setVisibility(View.VISIBLE);
                 countDownTimer = new CountDownTimer(delayTackPicture * 1000 + 500, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
-                        countDown.setText((int) millisUntilFinished / 1000 + "");
+                        activityChapterTwoBinding.countDown.setText((int) millisUntilFinished / 1000 + "");
                     }
 
                     @Override
                     public void onFinish() {
-                        countDown.setVisibility(View.GONE);
-                        btnDelayTakcPicture.setVisibility(View.GONE);
+                        activityChapterTwoBinding.countDown.setVisibility(View.GONE);
+                        activityChapterTwoBinding.tackPicture.setVisibility(View.GONE);
                         takePicture();
                     }
                 };
@@ -298,10 +267,10 @@ public class ChapterTwo extends AppCompatActivity implements View.OnClickListene
                 }
                 break;
             case R.id.tack_picture:
-                btntack_picture.setVisibility(View.GONE);
-                camera_result_call_back.setVisibility(View.GONE);
-                take_camera_framelayout.setVisibility(View.VISIBLE);
-                btnDelayTakcPicture.setVisibility(View.VISIBLE);
+                activityChapterTwoBinding.tackPicture.setVisibility(View.GONE);
+                activityChapterTwoBinding.cameraResultCallBack.setVisibility(View.GONE);
+                activityChapterTwoBinding.takeCameraFramelayout.setVisibility(View.VISIBLE);
+                activityChapterTwoBinding.tackPicture.setVisibility(View.VISIBLE);
                 reopenCamera();
                 break;
 
@@ -343,12 +312,12 @@ public class ChapterTwo extends AppCompatActivity implements View.OnClickListene
      */
     private void swtichCamera() {
         if (cameraId.equals(backCamera)) {
-            camera_flash.setVisibility(View.VISIBLE);
+            activityChapterTwoBinding.cameraFlash.setVisibility(View.VISIBLE);
             cameraId = fontCamera;
             closeCamera();
             reopenCamera();
         } else if (cameraId.equals(fontCamera)) {
-            camera_flash.setVisibility(View.INVISIBLE);
+            activityChapterTwoBinding.cameraFlash.setVisibility(View.INVISIBLE);
             cameraId = backCamera;
             closeCamera();
             reopenCamera();

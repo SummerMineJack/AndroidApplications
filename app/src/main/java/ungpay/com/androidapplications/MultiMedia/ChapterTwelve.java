@@ -1,7 +1,7 @@
 package ungpay.com.androidapplications.MultiMedia;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
+import android.annotation.SuppressLint;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -18,11 +18,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.PermissionUtils;
-import com.blankj.utilcode.util.UtilsTransActivity;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -40,6 +38,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import ungpay.com.androidapplications.R;
+import ungpay.com.androidapplications.databinding.ActivityChapterTwelveBinding;
 import ungpay.com.androidapplications.unit.DialogHelper;
 
 /**
@@ -48,19 +47,18 @@ import ungpay.com.androidapplications.unit.DialogHelper;
 public class ChapterTwelve extends AppCompatActivity implements View.OnClickListener, LocationListener {
 
     private static final String flickrApiKey = "7be35df6be53b684f8c920db434f6e7b";
-    private Button btnFlickrInternetService, btnGetLocation, btnRecorderXml;
     private ListView showJokeResult;
     private ArrayList<Data> datas;
-    private LocationManager locationManager;
-    private TextView locationTV;
-    private String provider;
     private XMLUser xmlUser;
+
+    private ActivityChapterTwelveBinding activityChapterTwelveBinding;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chapter_twelve);
+        activityChapterTwelveBinding = ActivityChapterTwelveBinding.inflate(LayoutInflater.from(this));
+        setContentView(activityChapterTwelveBinding.getRoot());
         this.setTitle(getIntent().getStringExtra("title"));
         initView();
     }
@@ -70,14 +68,10 @@ public class ChapterTwelve extends AppCompatActivity implements View.OnClickList
      */
     private void initView() {
         datas = new ArrayList<>();
-        btnFlickrInternetService = findViewById(R.id.go_service);
         showJokeResult = findViewById(R.id.flickr_listView);
-        btnGetLocation = findViewById(R.id.get_location);
-        locationTV = findViewById(R.id.locationTV);
-        btnRecorderXml = findViewById(R.id.recorderXml);
-        btnRecorderXml.setOnClickListener(this);
-        btnGetLocation.setOnClickListener(this);
-        btnFlickrInternetService.setOnClickListener(this);
+        activityChapterTwelveBinding.recorderXml.setOnClickListener(this);
+        activityChapterTwelveBinding.getLocation.setOnClickListener(this);
+        activityChapterTwelveBinding.goService.setOnClickListener(this);
     }
 
     @Override
@@ -189,63 +183,40 @@ public class ChapterTwelve extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    private Location lastLocation;
+
     /**
      * 获取位置信息
      */
+    @SuppressLint("MissingPermission")
     private void getLocation() {
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        PermissionUtils.permission(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}).rationale(new PermissionUtils.OnRationaleListener() {
+        PermissionUtils.permission(PermissionConstants.LOCATION).rationale((activity, shouldRequest) -> DialogHelper.showRationaleDialog(shouldRequest)).callback(new PermissionUtils.SimpleCallback() {
             @Override
-            public void rationale(UtilsTransActivity activity, ShouldRequest shouldRequest) {
-                DialogHelper.showRationaleDialog(shouldRequest);
-
-            }
-        }).callback(new PermissionUtils.FullCallback() {
-            @Override
-            public void onGranted(List<String> permissionsGranted) {
-                if (ActivityCompat.checkSelfPermission(ChapterTwelve.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(ChapterTwelve.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
+            public void onGranted() {
+                LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+                List<String> providers = locationManager.getProviders(true);
+                for (String provider : providers) {
+                    Location l = locationManager.getLastKnownLocation(provider);
+                    if (l == null) {
+                        continue;
+                    }
+                    if (lastLocation == null || l.getAccuracy() < lastLocation.getAccuracy()) {
+                        lastLocation = l;
+                    }
+                    activityChapterTwelveBinding.locationTV.setText("经度：" + lastLocation.getLatitude() + " 纬度：" + lastLocation.getLongitude());
                 }
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 60000l, 5.0f, ChapterTwelve.this);
-                List<String> providerList = locationManager.getProviders(true);
-// 传入 true 就表示只有启用的位置提供器才会被返回。
-
-                if (providerList.contains(LocationManager.GPS_PROVIDER)) {
-                    provider = LocationManager.GPS_PROVIDER;
-                } else if (providerList.contains(LocationManager.NETWORK_PROVIDER)) {
-                    provider = LocationManager.NETWORK_PROVIDER;
-                }
-                Location location = locationManager.getLastKnownLocation(provider);
-                locationTV.setText("经度：" + location.getLatitude() + " 纬度：" + location.getLongitude());
             }
 
             @Override
-            public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
-                if (!permissionsDeniedForever.isEmpty()) {
-                    DialogHelper.showOpenAppSettingDialog();
-                }
-                LogUtils.d(permissionsDeniedForever, permissionsDenied);
+            public void onDenied() {
+                getLocation();
             }
         }).request();
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        locationManager.removeUpdates(this);
-    }
-
-
-    @Override
     public void onLocationChanged(Location location) {
-        locationTV.setText("经度：" + location.getLatitude() + " 纬度：" + location.getLongitude());
+        activityChapterTwelveBinding.locationTV.setText("经度：" + location.getLatitude() + " 纬度：" + location.getLongitude());
     }
 
     @Override

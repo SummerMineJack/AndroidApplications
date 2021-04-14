@@ -10,13 +10,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.MediaController;
-import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,6 +32,7 @@ import java.util.Date;
 import java.util.List;
 
 import ungpay.com.androidapplications.R;
+import ungpay.com.androidapplications.databinding.ActivityChapterElevenBinding;
 import ungpay.com.androidapplications.unit.DialogHelper;
 
 /**
@@ -41,15 +40,12 @@ import ungpay.com.androidapplications.unit.DialogHelper;
  */
 public class ChapterEleven extends AppCompatActivity implements OnClickListener, OnErrorListener {
 
-    private Button btnuUseIntent2RecordVideo, btnuUseIntent2Play, btnSaveRecorderVideo, btnVideoStartRecorder, btnVideoStopRecorder, btnVideoPlayRecorder;
-    private VideoView videoView;
+    private ActivityChapterElevenBinding activityChapterElevenBinding;
     private Uri recorderVideoUri;
-
     //录制
     private MediaRecorder mediaRecorder;
     private String videoFilePath;
     private SurfaceHolder surfaceHolder;
-    private SurfaceView surfaceView;
     private boolean isRecording = false;
     private boolean isPlaying = false;
     private boolean isOpenCamera = false;
@@ -61,12 +57,12 @@ public class ChapterEleven extends AppCompatActivity implements OnClickListener,
     private int videoHeight = 0;// 视频分辨率高度
     public Camera.Size pictureSize;//照片分辨率
     private Camera.Size previewSize;//预览分辨率
-    private  VideoView recorderVidePlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chapter_eleven);
+        activityChapterElevenBinding = ActivityChapterElevenBinding.inflate(LayoutInflater.from(this));
+        setContentView(activityChapterElevenBinding.getRoot());
         this.setTitle(getIntent().getStringExtra("title"));
         initView();
     }
@@ -76,32 +72,22 @@ public class ChapterEleven extends AppCompatActivity implements OnClickListener,
      * 初始化视图
      */
     private void initView() {
-        btnuUseIntent2RecordVideo = findViewById(R.id.useIntent2RecordVideo);
-        btnuUseIntent2Play = findViewById(R.id.useIntent2Play);
-        videoView = findViewById(R.id.intentVideView);
-        btnSaveRecorderVideo = findViewById(R.id.saveRecorderVideo);
-        btnVideoStartRecorder = findViewById(R.id.startRecorder);
-        btnVideoStopRecorder = findViewById(R.id.stopRecorder);
-        btnVideoPlayRecorder = findViewById(R.id.playRecorder);
-        btnVideoPlayRecorder.setOnClickListener(this);
-        btnVideoStopRecorder.setOnClickListener(this);
-        btnVideoStartRecorder.setOnClickListener(this);
-        btnSaveRecorderVideo.setOnClickListener(this);
-        btnuUseIntent2Play.setEnabled(false);
-        btnSaveRecorderVideo.setEnabled(false);
-        btnuUseIntent2Play.setOnClickListener(this);
-        btnuUseIntent2RecordVideo.setOnClickListener(this);
+        activityChapterElevenBinding.playRecorder.setOnClickListener(this);
+        activityChapterElevenBinding.stopRecorder.setOnClickListener(this);
+        activityChapterElevenBinding.startRecorder.setOnClickListener(this);
+        activityChapterElevenBinding.saveRecorderVideo.setOnClickListener(this);
+        activityChapterElevenBinding.useIntent2Play.setEnabled(false);
+        activityChapterElevenBinding.saveRecorderVideo.setEnabled(false);
+        activityChapterElevenBinding.useIntent2Play.setOnClickListener(this);
+        activityChapterElevenBinding.useIntent2RecordVideo.setOnClickListener(this);
         initMediaRecorder();
-
     }
 
     /**
      * 初始化MediaRecorder
      */
     private void initMediaRecorder() {
-        surfaceView = findViewById(R.id.CustomVideo);
-        recorderVidePlayer=findViewById(R.id.recordingVideoPlayer);
-        surfaceHolder = surfaceView.getHolder();
+        surfaceHolder = activityChapterElevenBinding.CustomVideo.getHolder();
         surfaceHolder.addCallback(callbacks);
     }
 
@@ -417,8 +403,8 @@ public class ChapterEleven extends AppCompatActivity implements OnClickListener,
      * 开始播放录制的视频
      */
     private void playRecorder() {
-        recorderVidePlayer.setVideoPath(videoFile.getAbsolutePath());
-        recorderVidePlayer.start();
+        activityChapterElevenBinding.recordingVideoPlayer.setVideoPath(videoFile.getAbsolutePath());
+        activityChapterElevenBinding.recordingVideoPlayer.start();
     }
 
     /**
@@ -438,9 +424,9 @@ public class ChapterEleven extends AppCompatActivity implements OnClickListener,
      * 播放刚刚录制的视频
      */
     private void play2RecorderVideo() {
-        videoView.setVideoURI(recorderVideoUri);
-        videoView.setMediaController(new MediaController(this));
-        videoView.start();
+        activityChapterElevenBinding.intentVideView.setVideoURI(recorderVideoUri);
+        activityChapterElevenBinding.intentVideView.setMediaController(new MediaController(this));
+        activityChapterElevenBinding.intentVideView.start();
     }
 
     /**
@@ -452,14 +438,15 @@ public class ChapterEleven extends AppCompatActivity implements OnClickListener,
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case 1:
                     recorderVideoUri = data.getData();
-                    btnuUseIntent2Play.setEnabled(true);
-                    btnSaveRecorderVideo.setEnabled(true);
-                    btnuUseIntent2RecordVideo.setEnabled(false);
-                    videoView.setVisibility(View.VISIBLE);
+                    activityChapterElevenBinding.useIntent2Play.setEnabled(true);
+                    activityChapterElevenBinding.saveRecorderVideo.setEnabled(true);
+                    activityChapterElevenBinding.useIntent2RecordVideo.setEnabled(false);
+                    activityChapterElevenBinding.intentVideView.setVisibility(View.VISIBLE);
                     break;
             }
         }

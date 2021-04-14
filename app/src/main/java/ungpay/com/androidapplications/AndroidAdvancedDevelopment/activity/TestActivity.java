@@ -25,7 +25,7 @@ public class TestActivity extends AppCompatActivity {
     private void initView() {
         recyclerView = findViewById(R.id.rv_main);
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 1; i++) {
             list.add("哈萨ki" + i);
         }
         SeeMoreAdapter seeMoreAdapter = new SeeMoreAdapter(list);
@@ -33,12 +33,9 @@ public class TestActivity extends AppCompatActivity {
         recyclerView.setAdapter(seeMoreAdapter);
 
 
-        seeMoreAdapter.setOnITEMClickListener(new SeeMoreAdapter.OnItemClick() {
-            @Override
-            public void onItemClick(int position) {
-                int mPosition = position + 1;
-                Toast.makeText(getBaseContext(),"点击了第"+ mPosition +"个哈萨ki",Toast.LENGTH_SHORT).show();
-            }
+        seeMoreAdapter.setOnITEMClickListener(position -> {
+            int mPosition = position + 1;
+            Toast.makeText(getBaseContext(),"点击了第"+ mPosition +"个哈萨ki",Toast.LENGTH_SHORT).show();
         });
     }
 }
